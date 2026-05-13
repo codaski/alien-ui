@@ -10,6 +10,8 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 ### Changed
 
+- **Tests:** Register **`createAlienUI()`** on VTU **`global.plugins`** in **`Input`** specs so `useLocale()` has a provider (no stray stderr during **`npm run ci`**).
+- **Build (Vite → Rolldown):** **`build.rolldownOptions.checks.pluginTimings: false`** — `unplugin-dts` legitimately dominates a slice of build time; the timing warning is noise in CI.
 - **Build / `unplugin-dts`:** Add **`@vue/language-core`** as a devDependency (aligned with **`vue-tsc`**) so declarations build resolves the module under `npm ci`.
 - **npm `ci` / lockfile:** Direct devDependencies **`cac`** and **`commander`** plus **`overrides`** for Vite peer plugins under Nuxt DevTools keep `package-lock.json` complete and suppress spurious peer warnings with Vite **8**.
 - **Node.js `>=22`:** `engines`, [`.nvmrc`](./.nvmrc), and CI read the same version (fixes ESLint 10 / `Object.groupBy` on Node 20). Use `npm run ci` locally — it is what GitHub Actions runs after `npm ci`.

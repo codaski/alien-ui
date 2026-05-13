@@ -53,8 +53,10 @@ export default defineConfig({
       formats: ['es'],
     },
 
-    // ── Rollup options ─────────────────────────────────────────────────────
-    rollupOptions: {
+    // ── Bundle options (Vite 8 / Rolldown; `rollupOptions` is deprecated alias)
+    rolldownOptions: {
+      checks: { pluginTimings: false },
+
       // Never bundle peer deps — consumers provide them
       external: [
         'vue',

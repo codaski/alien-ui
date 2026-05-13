@@ -1,12 +1,16 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event'
+import { createAlienUI } from '@/plugin'
 import { AlienInput } from '../index'
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function renderInput(props: Record<string, unknown> = {}) {
-  return render(AlienInput, { props })
+  return render(AlienInput, {
+    props,
+    global: { plugins: [createAlienUI()] },
+  })
 }
 
 // ── Rendering ──────────────────────────────────────────────────────────────
@@ -183,6 +187,7 @@ describe('AlienInput — slots', () => {
   it('renders prefix slot content', () => {
     const { getByTestId } = render(AlienInput, {
       slots: { prefix: '<span data-testid="prefix-icon">@</span>' },
+      global: { plugins: [createAlienUI()] },
     })
     expect(getByTestId('prefix-icon')).toBeDefined()
   })
@@ -190,6 +195,7 @@ describe('AlienInput — slots', () => {
   it('renders suffix slot content', () => {
     const { getByTestId } = render(AlienInput, {
       slots: { suffix: '<span data-testid="suffix-icon">px</span>' },
+      global: { plugins: [createAlienUI()] },
     })
     expect(getByTestId('suffix-icon')).toBeDefined()
   })
