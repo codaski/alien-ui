@@ -12,6 +12,14 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 - _Nothing yet._
 
+## [0.2.6-beta] - 2026-05-16
+
+Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
+
+### Fixed
+
+- **Focus:** remove stacked blue rings on **`AlienInput`**. Global **`*:focus-visible`** box-shadow in **`styles/base.css`** no longer targets **`input`**, **`textarea`**, or **`select`** (those are styled by components). The input shell no longer adds **`focus-within:border-primary`** on top of the wrapper **`ring`**, and the native **`<input>`** uses **`focus-visible:shadow-none`** as a safeguard.
+
 ## [0.2.5-beta] - 2026-05-16
 
 Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).

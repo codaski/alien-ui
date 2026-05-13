@@ -91,8 +91,12 @@
 
 /* ── 5. Base layer resets ──────────────────────────────────────────────── */
 @layer base {
-  /* Consistent focus ring across all interactive elements */
-  *:focus-visible {
+  /*
+   * Global focus ring for buttons, links, etc. Exclude native form controls —
+   * those are styled by components (e.g. AlienInput wrapper ring) so we do not
+   * stack this box-shadow on top of input:focus-visible (double ring).
+   */
+  *:focus-visible:not(input):not(textarea):not(select) {
     outline:        none;
     outline-offset: 2px;
     box-shadow:     0 0 0 2px hsl(var(--alien-surface)),

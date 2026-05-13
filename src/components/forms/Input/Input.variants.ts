@@ -9,9 +9,8 @@ export const inputWrapperVariants = cva(
     'rounded border bg-surface',
     'text-foreground',
     'transition-colors duration-150',
-    // Focus ring is on the wrapper so prefix/suffix get it too
+    // Focus ring on wrapper only — single ring (state variants own border colour)
     'focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-surface',
-    'focus-within:border-primary',
   ],
   {
     variants: {
@@ -24,8 +23,8 @@ export const inputWrapperVariants = cva(
       },
       state: {
         default: 'border-border hover:border-muted-foreground',
-        error:   'border-destructive hover:border-destructive focus-within:ring-destructive focus-within:border-destructive',
-        success: 'border-success   hover:border-success   focus-within:ring-success   focus-within:border-success',
+        error:   'border-destructive hover:border-destructive focus-within:ring-destructive',
+        success: 'border-success   hover:border-success   focus-within:ring-success',
       },
       disabled: {
         true:  'cursor-not-allowed opacity-50 pointer-events-none',
@@ -51,6 +50,8 @@ export const inputFieldVariants = cva(
   [
     'flex-1 min-w-0',
     'bg-transparent outline-none',
+    /* Do not inherit global *:focus-visible box-shadow (base.css) if rule changes — kept explicit */
+    'focus-visible:shadow-none',
     'placeholder:text-muted-foreground',
     'text-inherit',
     // Remove browser default number spinners
