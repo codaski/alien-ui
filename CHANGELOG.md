@@ -12,6 +12,15 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 - _Nothing yet._
 
+## [0.2.2-beta] - 2026-05-15
+
+Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
+
+### Changed
+
+- **GitHub Actions:** `actions/checkout@v5` and `actions/setup-node@v5` so workflow steps use the Node 24 action runtime (addresses Node 20 deprecation warnings on `checkout` / `setup-node`).
+- **Package metadata:** `package.json` **`homepage`** set to the GitHub repo readme.
+
 ## [0.2.1-beta] - 2026-05-14
 
 Prerelease under the **`beta`** dist-tag. **Local `npm run ci` passed** before tag.
@@ -62,7 +71,8 @@ First public **beta** (package name later **`@codaski/alien-ui`**; was planned a
 - **Vite:** `rolldownOptions` (incl. **`pluginTimings: false`**); tests mount **`createAlienUI()`** to avoid `useLocale()` stderr noise.
 - Maintainer-only **`docs/`** + **`RULES.md`** gitignored; public entry [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
 
-[Unreleased]: https://github.com/codaski/alien-ui/compare/v0.2.1-beta...HEAD
+[Unreleased]: https://github.com/codaski/alien-ui/compare/v0.2.2-beta...HEAD
+[0.2.2-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.2.2-beta
 [0.2.1-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.2.1-beta
 [0.2.0-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.2.0-beta
 [0.1.1-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.1.1-beta
