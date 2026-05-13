@@ -2,6 +2,6 @@
  * Alien UI — Style entry point.
  *
  * Import this once in your app:
- *   import '@alien-ui/vue/styles'
+ *   import '@codaski/alien-ui/styles'
  */
 @import "./base.css";

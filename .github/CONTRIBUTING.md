@@ -10,7 +10,7 @@ Nothing stops you opening an issue asking for onboarding help; substantive PRs b
 
 ---
 
-## Smoke-test `@alien-ui/vue` locally (before npm)
+## Smoke-test `@codaski/alien-ui` locally (before npm)
 
 **Prerequisites:** **Node.js 22+** and **npm 10+** (see root `package.json` `engines` and `.nvmrc`).
 
@@ -23,7 +23,7 @@ npm pack
 In a separate Nuxt 4 playground:
 
 ```bash
-npm install /absolute/path/to/alien-ui-vue-0.1.1-beta.tgz
+npm install /absolute/path/to/codaski-alien-ui-0.1.1-beta.tgz
 ```
 
 Or in that app’s `package.json`:
@@ -31,7 +31,7 @@ Or in that app’s `package.json`:
 ```json
 {
   "dependencies": {
-    "@alien-ui/vue": "file:/absolute/path/to/alien-ui/Alien UI"
+    "@codaski/alien-ui": "file:/absolute/path/to/alien-ui/Alien UI"
   }
 }
 ```
@@ -39,12 +39,12 @@ Or in that app’s `package.json`:
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@alien-ui/vue/nuxt'],
+  modules: ['@codaski/alien-ui/nuxt'],
   vite: { resolve: { dedupe: ['vue'] } },
 })
 ```
 
-Beta notice: APIs may change frequently; pin a version (`@alien-ui/vue@~0.1.0`) while experimenting.
+Beta notice: APIs may change frequently; pin a version (`@codaski/alien-ui@~0.1.0`) while experimenting.
 
 ---
 

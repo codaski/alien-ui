@@ -70,7 +70,7 @@ function kebab(str: string): string {
  *
  * @example
  * // main.ts
- * import { createAlienUI } from '@alien-ui/vue'
+ * import { createAlienUI } from '@codaski/alien-ui'
  * app.use(createAlienUI({ locale: 'ar', messages: { ar: arMessages } }))
  */
 export function createAlienUI(options: AlienUIOptions = {}): { install: (app: App) => void } {

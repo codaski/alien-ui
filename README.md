@@ -1,12 +1,12 @@
-# 👋 `@alien-ui/vue` · Alien UI
+# 👋 `@codaski/alien-ui` · Alien UI
 
-[![npm](https://img.shields.io/npm/v/@alien-ui/vue?label=npm&logo=npm&color=CB3837)](https://www.npmjs.com/package/@alien-ui/vue)
+[![npm](https://img.shields.io/npm/v/@codaski/alien-ui?label=npm&logo=npm&color=CB3837)](https://www.npmjs.com/package/@codaski/alien-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![TypeScript](https://img.shields.io/badge/typings-ready-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 **Hello!** Thanks for stopping by **Alien UI** — a Vue-friendly kit built on **[Reka UI](https://reka-ui.com)** primitives, **[Tailwind CSS v4](https://tailwindcss.com)** (**`--alien-*`** tokens), **[vue-i18n](https://vue-i18n.intlify.dev)**, and **[Zod](https://zod.dev)** / **[VeeValidate](https://vee-validate.logaretm.com/v5/)** for the direction we’re taking forms. We’re intentionally shipping **early and in the open** so you can try things, give feedback, and grow with the project.
 
-**Quick links:** [npm](https://www.npmjs.com/package/@alien-ui/vue) · [Issues](https://github.com/codaski/alien-ui/issues) · [Source](https://github.com/codaski/alien-ui) · [Changelog](./CHANGELOG.md)
+**Scoped public package:** published under npm user **`codaski`** as **`@codaski/alien-ui`** (`publishConfig.access: public`). **Quick links:** [npm](https://www.npmjs.com/package/@codaski/alien-ui) · [Issues](https://github.com/codaski/alien-ui/issues) · [Source](https://github.com/codaski/alien-ui) · [Changelog](./CHANGELOG.md)
 
 ---
 
@@ -34,7 +34,7 @@ Until then — **thanks for being early.** 👋✨
 |---|---|
 | **Vue** | **`>= 3.5`** — **`peerDependency`**. Install **`vue`** in your app. |
 | **Bundler** | **Vite** or **Nuxt 4** (examples below align with typical setups). |
-| **Styles** | When you **`import '@alien-ui/vue/styles'`**, add **Tailwind CSS v4** and **`@tailwindcss/vite`** in **your** app so utilities and theme layers compile. |
+| **Styles** | When you **`import '@codaski/alien-ui/styles'`**, add **Tailwind CSS v4** and **`@tailwindcss/vite`** in **your** app so utilities and theme layers compile. |
 | **TypeScript** | **Optional** — typings ship with the tarball. |
 | **Exact semver** | **`package.json`** on npm is the authoritative list (`dependencies`, `peerDependencies`). |
 
@@ -49,26 +49,26 @@ Until then — **thanks for being early.** 👋✨
 Standard:
 
 ```bash
-npm install @alien-ui/vue
+npm install @codaski/alien-ui
 ```
 
 Comfortable pinning while **`0.*`** evolves (stable **`latest`** channel):
 
 ```bash
-npm install '@alien-ui/vue@~0.1.0'
+npm install '@codaski/alien-ui@~0.1.0'
 ```
 
 **Prereleases** (semver build with a hyphen, e.g. **`0.1.1-beta`**): use the **`beta`** tag or an exact version:
 
 ```bash
-npm install @alien-ui/vue@beta
-npm install '@alien-ui/vue@0.1.1-beta'
+npm install @codaski/alien-ui@beta
+npm install '@codaski/alien-ui@0.1.1-beta'
 ```
 
 From **`npm pack` tarball**:
 
 ```bash
-npm install /absolute/path/to/alien-ui-vue-0.1.1-beta.tgz
+npm install /absolute/path/to/codaski-alien-ui-0.1.1-beta.tgz
 ```
 
 Local **`file:`** path (monorepos / workspaces):
@@ -76,12 +76,12 @@ Local **`file:`** path (monorepos / workspaces):
 ```json
 {
   "dependencies": {
-    "@alien-ui/vue": "file:../path/to/package-root"
+    "@codaski/alien-ui": "file:../path/to/package-root"
   }
 }
 ```
 
-See above for **`npm install @alien-ui/vue@beta`** · exact **`0.1.1-beta`**, and tarball names.
+See above for **`npm install @codaski/alien-ui@beta`** · exact **`0.1.1-beta`**, and tarball names.
 
 ---
 
@@ -108,8 +108,8 @@ export default defineConfig({
 
 ```ts
 import { createApp } from 'vue'
-import { createAlienUI } from '@alien-ui/vue'
-import '@alien-ui/vue/styles'
+import { createAlienUI } from '@codaski/alien-ui'
+import '@codaski/alien-ui/styles'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -121,7 +121,7 @@ app.mount('#app')
 
 ```vue
 <script setup lang="ts">
-import { AlienInput } from '@alien-ui/vue'
+import { AlienInput } from '@codaski/alien-ui'
 
 const value = ref('')
 </script>
@@ -134,7 +134,7 @@ const value = ref('')
 **Optional exports-respecting import:**
 
 ```ts
-import { AlienInput } from '@alien-ui/vue/components/forms'
+import { AlienInput } from '@codaski/alien-ui/components/forms'
 ```
 
 ---
@@ -147,7 +147,7 @@ The module wires **CSS**, **`createAlienUI()`**, **composables auto-import**, an
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@alien-ui/vue/nuxt'],
+  modules: ['@codaski/alien-ui/nuxt'],
   alienUI: {
     // locale: 'en',
     // colorMode: 'system' | 'light' | 'dark',
@@ -178,7 +178,7 @@ Explicit imports still welcomed:
 
 ```vue
 <script setup lang="ts">
-import { AlienInput } from '@alien-ui/vue'
+import { AlienInput } from '@codaski/alien-ui'
 </script>
 ```
 
@@ -187,7 +187,7 @@ import { AlienInput } from '@alien-ui/vue'
 ## Locale / i18n (English by default)
 
 ```ts
-import { createAlienUI } from '@alien-ui/vue'
+import { createAlienUI } from '@codaski/alien-ui'
 import myMessages from './locales/ar.json'
 
 app.use(createAlienUI({
@@ -203,7 +203,7 @@ Nested keys commonly use the **`alien-ui.*`** prefix — merge your own catalogs
 ## Theming (`--alien-*`)
 
 ```css
-@import "@alien-ui/vue/styles";
+@import "@codaski/alien-ui/styles";
 
 :root {
   --alien-primary:  265 90% 60%;

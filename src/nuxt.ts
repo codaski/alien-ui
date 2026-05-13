@@ -5,10 +5,10 @@ import type { AlienUIOptions } from './plugin'
  * Alien UI — Nuxt module.
  *
  * Usage in nuxt.config.ts:
- *   modules: ['@alien-ui/vue/nuxt']
+ *   modules: ['@codaski/alien-ui/nuxt']
  *
  * With options:
- *   modules: [['@alien-ui/vue/nuxt', { locale: 'ar', colorMode: 'dark' }]]
+ *   modules: [['@codaski/alien-ui/nuxt', { locale: 'ar', colorMode: 'dark' }]]
  *
  * Or via alienUI key:
  *   alienUI: { locale: 'ar' }
@@ -32,7 +32,7 @@ export interface AlienUIModuleOptions extends AlienUIOptions {
 
 export default defineNuxtModule<AlienUIModuleOptions>({
   meta: {
-    name:          '@alien-ui/vue',
+    name:          '@codaski/alien-ui',
     configKey:     'alienUI',
     compatibility: { nuxt: '>=3.10.0' },
   },
@@ -48,7 +48,7 @@ export default defineNuxtModule<AlienUIModuleOptions>({
     const resolver = createResolver(import.meta.url)
 
     // ── Auto-import CSS ──────────────────────────────────────────────────
-    nuxt.options.css.push('@alien-ui/vue/styles')
+    nuxt.options.css.push('@codaski/alien-ui/styles')
 
     // ── Register Nuxt plugin (injects createAlienUI) ─────────────────────
     addPlugin({ src: resolver.resolve('./plugin/nuxt-runtime'), mode: 'all' })

@@ -1,14 +1,14 @@
 /**
  * Alien UI — Variants sub-entry.
  *
- * Import path: `@alien-ui/vue/variants`
+ * Import path: `@codaski/alien-ui/variants`
  *
  * Use this when you only want to import variant functions (cva definitions)
  * without importing Vue components — useful for headless usage or
  * when extending variants in your own project.
  *
  * @example
- * import { inputVariants } from '@alien-ui/vue/variants'
+ * import { inputVariants } from '@codaski/alien-ui/variants'
  */
 
 export {

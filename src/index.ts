@@ -1,11 +1,11 @@
 /**
  * Alien UI — Main package entry point.
  *
- * Import path: `@alien-ui/vue`
+ * Import path: `@codaski/alien-ui`
  *
  * @example
- * import { createAlienUI, AlienInput } from '@alien-ui/vue'
- * import '@alien-ui/vue/styles'
+ * import { createAlienUI, AlienInput } from '@codaski/alien-ui'
+ * import '@codaski/alien-ui/styles'
  */
 
 // ── Plugin ─────────────────────────────────────────────────────────────────

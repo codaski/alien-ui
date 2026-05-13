@@ -1,6 +1,6 @@
 # Changelog
 
-Notable changes to **`@alien-ui/vue`** (npm org **`alien-ui`**) are listed here.
+Notable changes to **`@codaski/alien-ui`** (npm user **`codaski`**, **public** scoped package) are listed here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and [Semantic Versioning](https://semver.org/spec/v2.0.0.html) applies. During **pre-1.0** (`0.y.z`),
@@ -14,21 +14,22 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 ## [0.1.1-beta] - 2026-05-13
 
-Prerelease published to npm under the **`beta`** dist-tag (**`npm install @alien-ui/vue@beta`**).
+Prerelease published to npm under the **`beta`** dist-tag (**`npm install @codaski/alien-ui@beta`**).
 
 ### Changed
 
 - **README:** consumer-first usage guide and optimistic beta wording.
-- **Release workflow:** versions containing a hyphen (semver prereleases) run **`npm publish --tag beta`** so **`npm install @alien-ui/vue`** (**`latest`**) stays on **`0.1.0`** until you publish a stable version without prerelease identifiers.
+- **Release workflow:** versions containing a hyphen (semver prereleases) run **`npm publish --tag beta`** so **`npm install @codaski/alien-ui`** (**`latest`**) stays on **`0.1.0`** until you publish a stable version without prerelease identifiers.
+- **BREAKING (post-tag note):** npm package name **`@alien-ui/vue`** → **`@codaski/alien-ui`** for publishing under user **`codaski`** (public). Imports and Nuxt module path are now **`@codaski/alien-ui`**, **`@codaski/alien-ui/styles`**, **`@codaski/alien-ui/nuxt`**.
 
 ## [0.1.0] - 2026-05-13
 
-First public **beta** (`@alien-ui/vue`).
+First public **beta** (package name later **`@codaski/alien-ui`**; was planned as `@alien-ui/vue`).
 
 ### Added
 
-- Scoped package **`@alien-ui/vue`**: Vue plugin (`createAlienUI`), Tailwind v4 stylesheet export, variants entry.
-- Nuxt module **`@alien-ui/vue/nuxt`**: runtime plugin, style injection, composable auto-imports, registered **`AlienInput`**.
+- Scoped package **`@codaski/alien-ui`**: Vue plugin (`createAlienUI`), Tailwind v4 stylesheet export, variants entry.
+- Nuxt module **`@codaski/alien-ui/nuxt`**: runtime plugin, style injection, composable auto-imports, registered **`AlienInput`**.
 - **`AlienInput`** component and **`alien-ui`** CLI (eject/scaffold).
 - MIT license, CI (`npm run ci`), release workflow on **`v*`** tags.
 

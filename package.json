@@ -1,5 +1,5 @@
 {
-  "name": "@alien-ui/vue",
+  "name": "@codaski/alien-ui",
   "version": "0.1.1-beta",
   "description": "Vue 3 & Nuxt 4 UI kit — Reka UI, Tailwind CSS v4, TypeScript (pre-stable beta; see README).",
   "author": "Alien UI Contributors",
@@ -123,7 +123,7 @@
 
   "keywords": [
     "alien-ui",
-    "@alien-ui/vue",
+    "@codaski/alien-ui",
     "vue",
     "vue3",
     "vue-components",
@@ -154,7 +154,7 @@
     "url": "https://github.com/codaski/alien-ui/issues"
   },
 
-  "homepage": "https://www.npmjs.com/package/@alien-ui/vue",
+  "homepage": "https://www.npmjs.com/package/@codaski/alien-ui",
 
   "bin": {
     "alien-ui": "./dist/cli.mjs"
