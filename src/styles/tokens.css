@@ -5,7 +5,7 @@
  * Tailwind's opacity modifier syntax works: bg-primary/50
  *
  * To override in your project:
- *   @import "alien-ui/styles";
+ *   @import "@alien-ui/vue/styles";
  *   :root { --alien-primary: 265 90% 60%; }
  */
 
