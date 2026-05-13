@@ -8,7 +8,7 @@
  * when extending variants in your own project.
  *
  * @example
- * import { inputVariants } from 'alien-ui/variants'
+ * import { inputVariants } from '@alien-ui/vue/variants'
  */
 
 export {

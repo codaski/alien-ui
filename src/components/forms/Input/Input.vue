@@ -31,6 +31,8 @@ import type {
   InputExpose,
 } from './Input.types'
 
+defineOptions({ name: 'AlienInput' })
+
 // ── Props & emits ──────────────────────────────────────────────────────────
 
 const props = withDefaults(defineProps<InputProps>(), {
@@ -109,6 +111,8 @@ const clearClass  = computed(() => inputClearVariants({ size: props.size }))
 const labelClass  = computed(() => inputLabelVariants({ size: props.size, disabled: props.disabled }))
 const hintClass   = computed(() => inputHintVariants({ state: resolvedError.value ? 'error' : 'hint' }))
 
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
+
 // ── Event handlers ─────────────────────────────────────────────────────────
 
 function onInput(event: Event) {
@@ -142,8 +146,6 @@ function onClear() {
 
 // ── Expose (imperative API) ────────────────────────────────────────────────
 
-const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
-
 defineExpose<InputExpose>({
   focus: () => inputRef.value?.focus(),
   blur:  () => inputRef.value?.blur(),
@@ -152,8 +154,7 @@ defineExpose<InputExpose>({
 </script>
 
 <template>
-  <div :class="cn('w-full', props.class)">
-
+  <div class="w-full flex flex-col">
     <!-- Label -->
     <label
       v-if="label"
@@ -170,7 +171,6 @@ defineExpose<InputExpose>({
 
     <!-- Input wrapper (the visible "box") -->
     <div :class="wrapperClass">
-
       <!-- Prefix slot -->
       <span
         v-if="$slots.prefix"
@@ -199,7 +199,7 @@ defineExpose<InputExpose>({
         @change="onChange"
         @focus="onFocus"
         @blur="onBlur"
-      />
+      >
 
       <!-- Suffix slot -->
       <span
@@ -232,7 +232,6 @@ defineExpose<InputExpose>({
           <path d="M12 4 4 12M4 4l8 8" />
         </svg>
       </button>
-
     </div>
 
     <!-- Hint / error -->
@@ -244,6 +243,5 @@ defineExpose<InputExpose>({
     >
       {{ resolvedError ?? hint }}
     </p>
-
   </div>
 </template>

@@ -1,10 +1,11 @@
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, useId } from 'vue'
 
 /**
  * Generate a stable, SSR-safe unique ID.
  *
- * Prefers Vue 3.5's built-in `useId()` when available.
- * Falls back to a monotonic counter for older Vue versions or non-component contexts.
+ * Uses Vue 3.5's built-in `useId()` (SSR-hydration-safe) when called
+ * inside a component setup context. Falls back to a monotonic counter
+ * for non-component contexts (e.g. server utilities).
  *
  * Usage:
  *   const id = useAlienId('input')  // → "alien-input-3"
@@ -13,22 +14,14 @@ import { getCurrentInstance } from 'vue'
 let counter = 0
 
 export function useAlienId(prefix = 'alien'): string {
-  // Vue 3.5+ provides useId() which is SSR-hydration-safe
   try {
-    // Dynamic import so we don't break older Vue versions at parse time
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { useId } = require('vue') as typeof import('vue')
-    if (typeof useId === 'function') {
-      const id = useId()
-      return `${prefix}-${id}`
-    }
+    const id = useId()
+    return `${prefix}-${id}`
   }
   catch {
-    // fallthrough
+    // Not inside a component setup context — fall back to counter
+    const instance = getCurrentInstance()
+    const uid = instance?.uid ?? ++counter
+    return `${prefix}-${uid}`
   }
-
-  // Fallback: instance uid or global counter
-  const instance = getCurrentInstance()
-  const uid = instance?.uid ?? ++counter
-  return `${prefix}-${uid}`
 }

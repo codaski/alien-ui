@@ -1,10 +1,16 @@
 {
-  "name": "alien-ui",
+  "name": "@alien-ui/vue",
   "version": "0.1.0",
   "description": "Vue 3 / Nuxt component library — themed, headless-ready, and fully ejectable",
   "author": "Alien UI Contributors",
   "license": "MIT",
   "type": "module",
+
+  "engines": {
+    "node": ">=20.10.0"
+  },
+
+  "sideEffects": ["**/*.css", "dist/styles/**"],
 
   "files": ["dist", "src"],
 
@@ -23,7 +29,8 @@
       "types":  "./dist/variants.d.ts"
     },
     "./components/*": {
-      "import": "./dist/components/*.mjs"
+      "import": "./dist/components/*.mjs",
+      "types":  "./dist/components/*.d.ts"
     }
   },
 
@@ -31,16 +38,24 @@
   "module": "./dist/index.mjs",
   "types":  "./dist/index.d.ts",
 
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+
   "scripts": {
-    "dev":           "vite",
-    "build":         "vite build && vue-tsc --emitDeclarationOnly",
-    "typecheck":     "vue-tsc --noEmit",
-    "test":          "vitest run",
-    "test:watch":    "vitest",
-    "test:ui":       "vitest --ui",
-    "lint":          "eslint .",
-    "lint:fix":      "eslint . --fix",
-    "new:component": "tsx cli/new-component.ts"
+    "dev":             "vite",
+    "build":           "vite build && vue-tsc --emitDeclarationOnly && npm run build:cli",
+    "build:cli":       "esbuild cli/cli.ts --bundle --platform=node --format=esm --outfile=dist/cli.mjs --banner:js=\"#!/usr/bin/env node\" --legal-comments=none",
+    "typecheck":       "vue-tsc --noEmit",
+    "test":            "vitest run",
+    "test:watch":      "vitest",
+    "test:ui":         "vitest --ui",
+    "test:coverage":   "vitest run --coverage",
+    "lint":            "eslint .",
+    "lint:fix":        "eslint . --fix",
+    "new:component":   "tsx cli/cli.ts new-component",
+    "prepublishOnly":  "npm run lint && npm run typecheck && npm run test && npm run build"
   },
 
   "peerDependencies": {
@@ -48,6 +63,7 @@
   },
 
   "dependencies": {
+    "@nuxt/kit":                "^4.4.5",
     "reka-ui":                  "^2.9.7",
     "vee-validate":             "^5.0.0-beta.1",
     "zod":                      "^4.4.3",
@@ -70,6 +86,7 @@
     "vue-tsc":                     "^3.2.8",
 
     "vitest":                      "^4.1.6",
+    "@vitest/coverage-v8":         "^4.1.6",
     "@vue/test-utils":             "^2.4.10",
     "@testing-library/vue":        "^8.1.0",
     "@testing-library/user-event": "^14.6.1",
@@ -79,9 +96,10 @@
     "@antfu/eslint-config":        "^8.2.0",
 
     "nuxt":                        "^4.4.5",
-    "@nuxt/kit":                   "^4.4.5",
 
-    "tsx":                         "^4.21.0"
+    "tsx":                         "^4.21.0",
+
+    "esbuild":                     "^0.27.7"
   },
 
   "keywords": [
@@ -98,5 +116,9 @@
     "url": "https://github.com/codaski/alien-ui/issues"
   },
 
-  "homepage": "https://github.com/codaski/alien-ui#readme"
+  "homepage": "https://github.com/codaski/alien-ui#readme",
+
+  "bin": {
+    "alien-ui": "./dist/cli.mjs"
+  }
 }

@@ -13,6 +13,8 @@
     "exactOptionalPropertyTypes":  true,
     "noImplicitReturns":           true,
     "noFallthroughCasesInSwitch":  true,
+    "ignoreDeprecations":          "6.0",
+    "rootDir":                     "./src",
 
     // ── Vue / JSX ─────────────────────────────────────────────────────────
     "jsx":                  "preserve",
@@ -22,7 +24,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*":       ["./src/*"],
-      "alien-ui":  ["./src/index.ts"]
+      "@alien-ui/vue":  ["./src/index.ts"]
     },
 
     // ── Output ────────────────────────────────────────────────────────────
@@ -35,7 +37,8 @@
     "esModuleInterop":     true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule":   true,
-    "isolatedModules":     true
+    "isolatedModules":     true,
+    "skipLibCheck":        true
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist", "**/__tests__/**"]

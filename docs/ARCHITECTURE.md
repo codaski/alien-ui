@@ -23,49 +23,47 @@ alien-ui/
 │   │   │   │   ├── index.ts
 │   │   │   │   └── __tests__/
 │   │   │   │       └── Input.spec.ts
-│   │   │   ├── Textarea/
-│   │   │   ├── Select/
-│   │   │   ├── Checkbox/
-│   │   │   ├── Radio/
-│   │   │   ├── Switch/
-│   │   │   ├── DatePicker/
-│   │   │   ├── FileUpload/
+│   │   │   ├── Textarea/            (planned)
+│   │   │   ├── Select/              (planned)
+│   │   │   ├── Checkbox/            (planned)
+│   │   │   ├── Radio/               (planned)
+│   │   │   ├── Switch/              (planned)
+│   │   │   ├── DatePicker/          (planned)
+│   │   │   ├── FileUpload/          (planned)
 │   │   │   └── index.ts            # Re-exports all form components
 │   │   │
 │   │   ├── blocks/                 # Layout-level / composite components
-│   │   │   ├── Card/
-│   │   │   ├── Modal/
-│   │   │   ├── Drawer/
-│   │   │   ├── Tabs/
-│   │   │   ├── Accordion/
-│   │   │   ├── Alert/
-│   │   │   ├── Toast/
-│   │   │   ├── Tooltip/
-│   │   │   ├── Popover/
+│   │   │   ├── Card/                (planned)
+│   │   │   ├── Modal/               (planned)
+│   │   │   ├── Drawer/              (planned)
+│   │   │   ├── Tabs/                (planned)
+│   │   │   ├── Accordion/           (planned)
+│   │   │   ├── Alert/               (planned)
+│   │   │   ├── Toast/               (planned)
+│   │   │   ├── Tooltip/             (planned)
+│   │   │   ├── Popover/             (planned)
 │   │   │   └── index.ts
 │   │   │
 │   │   ├── layout/
-│   │   │   ├── Container/
-│   │   │   ├── Stack/
-│   │   │   ├── Divider/
+│   │   │   ├── Container/           (planned)
+│   │   │   ├── Stack/               (planned)
+│   │   │   ├── Divider/             (planned)
 │   │   │   └── index.ts
 │   │   │
 │   │   ├── feedback/
-│   │   │   ├── Spinner/
-│   │   │   ├── Skeleton/
-│   │   │   ├── Progress/
-│   │   │   ├── Badge/
+│   │   │   ├── Spinner/             (planned)
+│   │   │   ├── Skeleton/            (planned)
+│   │   │   ├── Progress/            (planned)
+│   │   │   ├── Badge/               (planned)
 │   │   │   └── index.ts
 │   │   │
 │   │   └── index.ts                # Re-exports all categories
 │   │
 │   ├── composables/
-│   │   ├── useField.ts             # Single field state (value, error, touched)
-│   │   ├── useFormGroup.ts         # Group-level form state
-│   │   ├── useTheme.ts             # CSS var injection + dark/light mode
+│   │   ├── useTheme.ts             # CSS var context + colour mode helpers
 │   │   ├── useLocale.ts            # i18n accessor composable
 │   │   ├── useVariants.ts          # Resolve cva variants from props
-│   │   └── index.ts
+│   │   └── index.ts                # Planned: useField, useFormGroup
 │   │
 │   ├── utils/
 │   │   ├── cn.ts                   # clsx + tailwind-merge helper
@@ -80,10 +78,7 @@ alien-ui/
 │   │   └── index.ts
 │   │
 │   ├── locales/
-│   │   ├── en.json                 # Default (must be 100% complete)
-│   │   ├── ar.json
-│   │   ├── fr.json
-│   │   └── es.json
+│   │   └── en.json                 # Default locale (planned: ar/fr/es)
 │   │
 │   ├── styles/
 │   │   ├── base.css                # @import "tailwindcss" + CSS var definitions
@@ -92,10 +87,12 @@ alien-ui/
 │   │
 │   └── plugin/
 │       ├── index.ts                # Vue plugin factory (createAlienUI)
-│       └── nuxt-module.ts          # Nuxt module definition
+│       └── nuxt-runtime.ts         # Nuxt plugin (calls createAlienUI)
 │
 ├── cli/
-│   └── eject.ts                    # `npx alien-ui eject <Component>`
+│   ├── cli.ts                      # `npx alien-ui` dispatcher (→ dist/cli.mjs)
+│   ├── new-component.ts            # Scaffold a new component (maintainers)
+│   └── eject.ts                    # Copy a component folder into an app
 │
 ├── docs/
 │   ├── ARCHITECTURE.md             # ← this file
@@ -106,8 +103,9 @@ alien-ui/
 ├── README.md
 ├── package.json
 ├── vite.config.ts
+├── eslint.config.js
 ├── tsconfig.json
-└── .eslintrc.js
+├── LICENSE
 ```
 
 > **No `tailwind.config.ts`.** Tailwind CSS v4 is configured entirely via CSS —
@@ -243,7 +241,7 @@ export default defineConfig({ plugins: [tailwindcss()] })
 
 ```css
 /* consumer/assets/main.css */
-@import "alien-ui/styles";   /* ← imports Alien UI's @theme + tokens */
+@import "@alien-ui/vue/styles";   /* ← imports Alien UI's @theme + tokens */
 
 /* Override tokens here — no config file needed */
 :root {
@@ -304,7 +302,7 @@ Or override the entire variant set by passing `variants`:
 
 ```ts
 // consumer project: my-variants.ts
-import { inputVariants } from 'alien-ui/variants'
+import { inputVariants } from '@alien-ui/vue/variants'
 export const myInputVariants = inputVariants.extend({ … })
 ```
 
@@ -320,7 +318,7 @@ The package's auto-resolver checks for a local copy first before using the packa
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['alien-ui/nuxt'],
+  modules: ['@alien-ui/vue/nuxt'],
   alienUI: {
     ejectDir: '~/components/alien', // local overrides directory
   },
@@ -338,7 +336,7 @@ export default defineNuxtConfig({
     "./nuxt":         { "import": "./dist/nuxt.mjs",     "types": "./dist/nuxt.d.ts" },
     "./styles":       "./dist/styles/index.css",
     "./variants":     { "import": "./dist/variants.mjs", "types": "./dist/variants.d.ts" },
-    "./components/*": { "import": "./dist/components/*.mjs" }
+    "./components/*": { "import": "./dist/components/*.mjs", "types": "./dist/components/*.d.ts" }
   }
 }
 ```
@@ -346,8 +344,8 @@ export default defineNuxtConfig({
 This allows consumers to import only what they need:
 
 ```ts
-import { AlienInput } from 'alien-ui'                      // full lib
-import { AlienInput } from 'alien-ui/components/forms'     // category
-import { inputVariants } from 'alien-ui/variants'          // variants only
-import 'alien-ui/styles'                                   // CSS only
+import { AlienInput } from '@alien-ui/vue'                      // full lib
+import { AlienInput } from '@alien-ui/vue/components/forms'     // category
+import { inputVariants } from '@alien-ui/vue/variants'          // variants only
+import '@alien-ui/vue/styles'                                   // CSS only
 ```

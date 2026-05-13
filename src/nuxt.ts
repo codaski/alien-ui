@@ -1,14 +1,14 @@
-import { defineNuxtModule, addPlugin, createResolver, addImportsDir } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, addComponent, createResolver, addImportsDir } from '@nuxt/kit'
 import type { AlienUIOptions } from './plugin'
 
 /**
  * Alien UI — Nuxt module.
  *
  * Usage in nuxt.config.ts:
- *   modules: ['alien-ui/nuxt']
+ *   modules: ['@alien-ui/vue/nuxt']
  *
  * With options:
- *   modules: [['alien-ui/nuxt', { locale: 'ar', colorMode: 'dark' }]]
+ *   modules: [['@alien-ui/vue/nuxt', { locale: 'ar', colorMode: 'dark' }]]
  *
  * Or via alienUI key:
  *   alienUI: { locale: 'ar' }
@@ -32,9 +32,9 @@ export interface AlienUIModuleOptions extends AlienUIOptions {
 
 export default defineNuxtModule<AlienUIModuleOptions>({
   meta: {
-    name:          'alien-ui',
+    name:          '@alien-ui/vue',
     configKey:     'alienUI',
-    compatibility: { nuxt: '^3.0.0' },
+    compatibility: { nuxt: '>=3.10.0' },
   },
 
   defaults: {
@@ -48,17 +48,40 @@ export default defineNuxtModule<AlienUIModuleOptions>({
     const resolver = createResolver(import.meta.url)
 
     // ── Auto-import CSS ──────────────────────────────────────────────────
-    nuxt.options.css.push('alien-ui/styles')
+    nuxt.options.css.push('@alien-ui/vue/styles')
 
     // ── Register Nuxt plugin (injects createAlienUI) ─────────────────────
-    addPlugin(resolver.resolve('./plugin/nuxt-runtime'))
+    addPlugin({ src: resolver.resolve('./plugin/nuxt-runtime'), mode: 'all' })
 
     // ── Auto-import composables ───────────────────────────────────────────
     addImportsDir(resolver.resolve('./composables'))
 
+    // ── Register auto-imported components ─────────────────────────────────
+    const prefix = options.prefix ?? 'Alien'
+
+    addComponent({
+      name:     `${prefix}Input`,
+      export:   'AlienInput',
+      filePath: resolver.resolve('./components/forms/Input/index'),
+    })
+
+    // ── Eject dir — prepend local overrides so they win over package ──────
+    if (options.ejectDir) {
+      const dirRaw = options.ejectDir.startsWith('~/')
+        ? createResolver(nuxt.options.rootDir).resolve(options.ejectDir.slice(2))
+        : createResolver(nuxt.options.rootDir).resolve(options.ejectDir)
+
+      nuxt.hook('components:dirs', (dirs) => {
+        dirs.unshift({
+          path:   dirRaw,
+          prefix: '',
+        })
+      })
+    }
+
     // ── Pass options to runtime config ────────────────────────────────────
     nuxt.options.runtimeConfig.public.alienUI = {
-      locale:    options.locale ?? 'en',
+      locale:    options.locale    ?? 'en',
       colorMode: options.colorMode ?? 'system',
     }
   },

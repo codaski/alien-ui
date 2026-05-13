@@ -155,7 +155,7 @@ export default defineConfig({ plugins: [tailwindcss(), vue()] })
 > **Nuxt 3 reaches EOL on 31 July 2026.** This library targets Nuxt 4.
 > Nuxt 4 is fully backwards-compatible with Nuxt 3 module authoring.
 
-**Alien UI provides a Nuxt module** (`alien-ui/nuxt`) that:
+**Alien UI provides a Nuxt module** (`@alien-ui/vue/nuxt`) that:
 - Auto-imports all components with the `Alien` prefix
 - Injects the CSS automatically
 - Supports the `ejectDir` option for local overrides
@@ -187,7 +187,7 @@ schema object). VeeValidate v5 reads this directly — no adapter package requir
 
 ```ts
 import { z } from 'zod'
-import type { InferSchema } from 'alien-ui'
+import type { InferSchema } from '@alien-ui/vue'
 
 const loginSchema = z.object({
   email:    z.string().email('Enter a valid email'),
@@ -357,4 +357,4 @@ not dead
 | | `nuxt` / `@nuxt/kit` bumped from v3 → v4 (v3 EOL July 2026) |
 | | `typescript` bumped to v6, `vite` to v8, `vitest` to v4 |
 | | **Zod upgraded to v4.4.3** — Standard Schema native, no adapter needed |
-| | **VeeValidate upgraded to v5.0.0-beta.1** — Standard Schema support, `@vee-validate/zod` dropped |
+| | **CLI + npm ship blockers fixed** — `nuxt-runtime` plugin, `addComponent(AlienInput)`, `bin`/`dist/cli.mjs`, GitHub Actions CI/release, `@nuxt/kit` in `dependencies`, `LICENSE`, `engines`, `sideEffects` |

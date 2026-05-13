@@ -1,6 +1,9 @@
 import { computed, type ComputedRef } from 'vue'
-import { type VariantProps, type ClassProp } from 'class-variance-authority'
+import type { VariantProps } from 'class-variance-authority'
 import { cn } from '@/utils/cn'
+
+/** cva-compatible `class` prop on variant callbacks (not exported by cva in newer versions). */
+type CvaClassProp = { class?: string }
 
 /**
  * Alien UI — variant resolver composable.
@@ -18,7 +21,7 @@ import { cn } from '@/utils/cn'
  * })), computed(() => props.class))
  */
 export function useVariants<
-  TVariantFn extends (props?: Record<string, unknown> & ClassProp) => string,
+  TVariantFn extends (props?: Record<string, unknown> & CvaClassProp) => string,
 >(
   variantFn:    TVariantFn,
   variantProps: ComputedRef<VariantProps<TVariantFn>>,
@@ -26,7 +29,7 @@ export function useVariants<
 ): ComputedRef<string> {
   return computed(() =>
     cn(
-      variantFn(variantProps.value as Record<string, unknown> & ClassProp),
+      variantFn(variantProps.value as Record<string, unknown> & CvaClassProp),
       extraClass?.value,
     )
   )

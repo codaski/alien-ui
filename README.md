@@ -7,7 +7,7 @@
 
 ## What is Alien UI?
 
-Alien UI is a **production-ready, open-architecture UI kit** for Vue 3 and Nuxt 3 applications.
+Alien UI is a **production-ready, open-architecture UI kit** for Vue 3 and Nuxt 4 applications.
 It ships beautiful, accessible components out of the box while remaining **fully overridable** —
 you can eject any component directly into your project and own it completely, just like shadcn/ui.
 
@@ -31,20 +31,20 @@ you can eject any component directly into your project and own it completely, ju
 |---|---|---|
 | Component primitives | [Reka UI](https://reka-ui.com) | `^2.x` |
 | Styling | [Tailwind CSS](https://tailwindcss.com) | `^4.x` |
-| Language | TypeScript | `^5.4` |
+| Language | TypeScript | `^6.0` |
 | Framework | Vue 3 + Nuxt 4 | Vue `^3.5` / Nuxt `^4.x` |
 | Validation schema | [Zod](https://zod.dev) | `^4.x` |
-| Form state | [VeeValidate](https://vee-validate.logaretm.com/v5/) | `^5.x` (Standard Schema) |
+| Form state | [VeeValidate](https://vee-validate.logaretm.com/v5/) | `^5.x` beta (Standard Schema; audit before prod freeze) |
 | Internationalisation | [vue-i18n](https://vue-i18n.intlify.dev) | `^11.x` |
 | Bundler | [Vite](https://vitejs.dev) + `@tailwindcss/vite` | `^8.x` |
-| Package manager | npm | `^10.x` |
+| Package manager | npm | `^11.x` |
 
 ---
 
 ## Quick install
 
 ```bash
-npm install alien-ui
+npm install @alien-ui/vue
 ```
 
 ### Vite / Vue 3 project
@@ -52,8 +52,8 @@ npm install alien-ui
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import { createAlienUI } from 'alien-ui'
-import 'alien-ui/styles'
+import { createAlienUI } from '@alien-ui/vue'
+import '@alien-ui/vue/styles'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -61,12 +61,14 @@ app.use(createAlienUI())
 app.mount('#app')
 ```
 
-### Nuxt 3 project
+### Nuxt 4 project
 
 ```ts
-// nuxt.config.ts
+// nuxt.config.ts (Nuxt 4 — place in your project root)
 export default defineNuxtConfig({
-  modules: ['alien-ui/nuxt'],
+  modules: ['@alien-ui/vue/nuxt'],
+  // Optional:
+  // alienUI: { locale: 'ar', colorMode: 'dark', prefix: 'Alien' }
 })
 ```
 
@@ -89,8 +91,9 @@ alien-ui/
 When you need to customise a component beyond what props/slots allow, eject it directly:
 
 ```bash
-npx alien-ui eject Button
-# → copies src/components/forms/Button/ into your project
+npm run build   # publishes dist/cli.mjs for npx
+npx alien-ui eject Input
+# → copies the Input component folder from the package into your app
 ```
 
 The ejected component is a plain `.vue` file — no magic, no hidden dependencies.
@@ -103,7 +106,7 @@ Update it freely; Alien UI will prefer your local version over the package versi
 Alien UI ships English messages by default. To add or override:
 
 ```ts
-import { createAlienUI } from 'alien-ui'
+import { createAlienUI } from '@alien-ui/vue'
 import myMessages from './locales/ar.json'
 
 app.use(createAlienUI({
@@ -121,7 +124,7 @@ Override them after importing the styles:
 
 ```css
 /* assets/main.css */
-@import "alien-ui/styles";   /* imports Tailwind + @theme + default tokens */
+@import "@alien-ui/vue/styles";   /* imports Tailwind + @theme + default tokens */
 
 /* Override only what you need — no config file required */
 :root {

@@ -1,9 +1,14 @@
 import type { VNode } from 'vue'
-import type { AlienSize } from '@/types'
+import type { AlienFormFieldProps } from '@/types'
 
 // ── Props ──────────────────────────────────────────────────────────────────
 
-export interface InputProps {
+/**
+ * Props for AlienInput.
+ * Shared form field props (name, label, hint, error, required, disabled,
+ * readonly, size, class) are inherited from AlienFormFieldProps.
+ */
+export interface InputProps extends AlienFormFieldProps {
   /** Two-way bound value */
   modelValue?: string
 
@@ -13,35 +18,8 @@ export interface InputProps {
   /** Placeholder text (falls back to i18n key if not provided) */
   placeholder?: string
 
-  /** Visible label rendered above the input */
-  label?: string
-
-  /** Helper text rendered below the input */
-  hint?: string
-
-  /** Validation error message — shown instead of hint when set */
-  error?: string
-
-  /** Visual size variant */
-  size?: AlienSize
-
   /** Show a clear (×) button when the field has a value */
   clearable?: boolean
-
-  /** Marks the field visually and semantically as required */
-  required?: boolean
-
-  /** Disables the input */
-  disabled?: boolean
-
-  /** Makes the input read-only */
-  readonly?: boolean
-
-  /** VeeValidate field name — must match the Zod schema key */
-  name?: string
-
-  /** Additional CSS classes merged onto the root wrapper */
-  class?: string
 }
 
 // ── Emits ──────────────────────────────────────────────────────────────────

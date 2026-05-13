@@ -4,8 +4,8 @@
  * Import path: `alien-ui`
  *
  * @example
- * import { createAlienUI, AlienInput } from 'alien-ui'
- * import 'alien-ui/styles'
+ * import { createAlienUI, AlienInput } from '@alien-ui/vue'
+ * import '@alien-ui/vue/styles'
  */
 
 // ── Plugin ─────────────────────────────────────────────────────────────────
@@ -20,7 +20,7 @@ export { useLocale, useTheme, useVariants } from './composables'
 export type { AlienLocaleContext, AlienThemeContext, TranslateFn } from './composables'
 
 // ── Utils ──────────────────────────────────────────────────────────────────
-export { cn, resolveFieldError } from './utils'
+export { cn, resolveFieldError, useAlienId } from './utils'
 export type { InferSchema } from './utils'
 
 // ── Types ──────────────────────────────────────────────────────────────────

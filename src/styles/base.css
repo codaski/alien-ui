@@ -2,7 +2,7 @@
  * Alien UI — Base styles (Tailwind CSS v4, CSS-first config).
  *
  * This file IS the Tailwind configuration. No tailwind.config.ts needed.
- * Consumers import this once: import 'alien-ui/styles'
+ * Consumers import this once: import '@alien-ui/vue/styles'
  *
  * Tailwind v4 docs: https://tailwindcss.com/docs/installation/using-vite
  */

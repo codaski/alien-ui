@@ -250,7 +250,7 @@ It must not appear anywhere in this codebase.
 ### 4.3 Use `InferSchema<typeof schema>` for type inference
 
 ```ts
-import type { InferSchema } from 'alien-ui'
+import type { InferSchema } from '@alien-ui/vue'
 
 const schema = z.object({ email: z.string() })
 type FormData = InferSchema<typeof schema>
@@ -401,3 +401,46 @@ chore: bump Reka UI to 2.1.0
 - Colour contrast must meet WCAG 2.1 AA (4.5:1 for text, 3:1 for large text).
 - Keyboard navigation must be complete — no mouse-only interactions.
 - Components must not trap focus unexpectedly (Reka UI handles this for dialogs/popovers).
+
+---
+
+## 11. Release rules
+
+### 11.1 Pre-publish checklist
+
+All of the following MUST pass before running `npm publish`:
+
+```bash
+npm run lint        # zero errors
+npm run typecheck   # zero errors
+npm run test        # all pass
+npm run build       # dist/ produced
+npm pack --dry-run  # verify tarball contents
+```
+
+The `prepublishOnly` script runs these automatically — never skip it with `--ignore-scripts`.
+
+### 11.2 Versioning
+
+Follow [Semantic Versioning](https://semver.org):
+- **Patch** `0.1.x` — bug fixes, no API change
+- **Minor** `0.x.0` — new components or options, backwards compatible
+- **Major** `x.0.0` — breaking changes (prop renames, removed exports, behaviour changes)
+
+Bump `version` in `package.json` **before** tagging.
+
+### 11.3 Changelog
+
+Update `docs/REFERENCES.md` version history table on every publish. Format:
+
+```
+| 2026-05-13 | v0.1.0 initial release |
+```
+
+### 11.4 No beta dependencies in releases
+
+`vee-validate` is currently `^5.0.0-beta.1`. Before any `0.x` → `1.0.0` promotion, all `dependencies` must be stable GA releases. If no GA exists, add a callout in README.
+
+### 11.5 No broken bin commands
+
+If `"bin"` is declared in `package.json`, the referenced file MUST exist in `dist/` after `npm run build`. Never declare a `bin` entry for an unbuilt CLI.

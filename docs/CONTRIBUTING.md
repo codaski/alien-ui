@@ -9,6 +9,49 @@ into your own project for full ownership.
 
 ---
 
+## Local testing before publishing
+
+Before publishing to npm, test the package locally in a Nuxt 4 app:
+
+```bash
+# 1. Build the package
+npm run build
+
+# 2. Pack it into a tarball
+npm pack
+
+# 3. In your test Nuxt project
+npm install /absolute/path/to/alien-ui-vue-0.1.0.tgz
+```
+
+Or use a file reference in the test project's `package.json`:
+```json
+"dependencies": {
+  "@alien-ui/vue": "file:C:/Projects/alien-ui/Alien UI"
+}
+```
+
+Then in `nuxt.config.ts`:
+```ts
+export default defineNuxtConfig({
+  modules: ['@alien-ui/vue/nuxt'],
+})
+```
+
+If you see duplicate Vue errors, extend `defineNuxtConfig` with:
+
+```ts
+export default defineNuxtConfig({
+  vite: {
+    resolve: {
+      dedupe: ['vue'],
+    },
+  },
+})
+```
+
+---
+
 ## Adding a new component
 
 ### Step 1 — Decide the category
@@ -298,7 +341,7 @@ colors: {
 
 ```css
 /* your-app/assets/main.css */
-@import "alien-ui/styles";
+@import "@alien-ui/vue/styles";
 
 :root {
   /* Override just what you need */
@@ -320,12 +363,12 @@ npx alien-ui eject Input
 
 ### Manual eject
 
-1. Copy `node_modules/alien-ui/src/components/forms/Input/` into your project.
+1. Copy `node_modules/@alien-ui/vue/src/components/forms/Input/` into your project.
 2. Configure the resolver in `nuxt.config.ts`:
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['alien-ui/nuxt'],
+  modules: ['@alien-ui/vue/nuxt'],
   alienUI: {
     ejectDir: '~/components/alien',
   },

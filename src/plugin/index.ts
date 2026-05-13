@@ -70,10 +70,10 @@ function kebab(str: string): string {
  *
  * @example
  * // main.ts
- * import { createAlienUI } from 'alien-ui'
+ * import { createAlienUI } from '@alien-ui/vue'
  * app.use(createAlienUI({ locale: 'ar', messages: { ar: arMessages } }))
  */
-export function createAlienUI(options: AlienUIOptions = {}) {
+export function createAlienUI(options: AlienUIOptions = {}): { install: (app: App) => void } {
   return {
     install(app: App): void {
       const {
@@ -95,10 +95,10 @@ export function createAlienUI(options: AlienUIOptions = {}) {
       }
 
       const i18n = createI18n({
-        legacy:        false,
+        legacy:         false,
         locale,
         fallbackLocale: 'en',
-        messages:       mergedMessages,
+        messages:       mergedMessages as unknown as NonNullable<NonNullable<Parameters<typeof createI18n>[0]>['messages']>,
         missingWarn:    false,
         fallbackWarn:   false,
       })
@@ -156,7 +156,9 @@ export function createAlienUI(options: AlienUIOptions = {}) {
         },
         setMode(m) {
           mode.value = m === 'system'
-            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            ? (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light')
             : m
           applyMode(mode.value)
         },

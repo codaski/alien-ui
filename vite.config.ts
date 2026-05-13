@@ -61,12 +61,17 @@ export default defineConfig({
         'vue-router',
         'vue-i18n',
         '@vueuse/core',
-        // Nuxt / kit internals
+        'vee-validate',
+        'zod',
+        'reka-ui',
+        'class-variance-authority',
+        'clsx',
+        'tailwind-merge',
+        /^@floating-ui\/.*/,
+        /^reka-ui\/.*/,
         '#app',
         'nuxt/app',
         '@nuxt/kit',
-        // reka-ui is a direct dependency, not external
-        // (it's listed in dependencies, not peerDependencies)
       ],
       output: {
         // Preserve module tree for per-component tree-shaking
