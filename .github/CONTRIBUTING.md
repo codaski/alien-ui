@@ -40,6 +40,31 @@ From this repo, after you have a consumer app on disk (your paths may differ):
 
 3. **`npm run link:test-app:quick`** skips the library build (use when you already ran `build` and only need to refresh the link).
 
+### One terminal: watch the library + run the Nuxt app
+
+If the consumer app already has **`@codaski/alien-ui`** as a **`file:`** dependency (see above), from **this repo** run:
+
+```bash
+npm run dev:test-app
+```
+
+This will:
+
+1. Run **`npm run build`** once and **`npm install file:…`** into the consumer (refreshes the link).
+2. Start **`vite build --watch`** (rebuilds **`dist/`** whenever you save library sources).
+3. Start **`npm run dev`** in the Nuxt app (same path rules as **`link:test-app`**: first CLI argument or **`ALIEN_UI_TEST_APP`**, default `../../local-testing/alien-ui-nuxt`).
+
+You work mainly from the Alien UI repo; the playground picks up changes from updated **`dist/`**.
+
+Flags:
+
+- **`--skip-initial-build`** — skip step 1 if you already built and linked.
+- **`--watch-lib-only`** — only **`vite build --watch`** (run **`nuxt dev`** yourself elsewhere if you prefer).
+
+Helpers: **`npm run build:watch`** (library watch alone) · **`npm run dev:test-app:lib`** = **`--watch-lib-only`** shortcut.
+
+Watch mode runs **`vite build --watch`** only. For full **`.d.ts`** / **CLI** regeneration after changing types or **`cli/`**, stop and run **`npm run build`** once (same as before shipping).
+
 Keep **`vite.resolve.dedupe: ['vue']`** (see below) in the Nuxt app when using `file:` installs.
 
 ### Pack tarball (CI-like install)

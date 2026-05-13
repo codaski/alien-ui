@@ -12,6 +12,14 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 - _Nothing yet._
 
+## [0.2.7-beta] - 2026-05-16
+
+Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
+
+### Added
+
+- **Local dev:** **`npm run dev:test-app`** — one-shot **`build`** + **`npm install file:`** into the consumer, then **`vite build --watch`** in parallel with **`npm run dev`** in the Nuxt app (`concurrently`). **`build:watch`**, **`dev:test-app:lib`** (watch library only). Shared path logic with **`link:test-app`** via **`scripts/resolve-consumer-app.mjs`**.
+
 ## [0.2.6-beta] - 2026-05-16
 
 Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).

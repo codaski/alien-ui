@@ -17,6 +17,7 @@ export default antfu(
       'cli/**',
       'vite.config.ts',
       '**/__tests__/**',
+      'scripts/**',
     ],
     markdown: false,
     vue:      true,

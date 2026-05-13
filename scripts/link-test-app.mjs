@@ -10,13 +10,14 @@
  *   npm run link:test-app:quick          # skip build; only reinstall from dist/
  */
 import { spawnSync } from 'node:child_process'
-import { existsSync } from 'node:fs'
-import { dirname, join, resolve } from 'node:path'
 import process from 'node:process'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { pathToFileURL } from 'node:url'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const libRoot = resolve(__dirname, '..')
+import {
+  assertConsumerPackageJson,
+  libRoot,
+  resolveConsumerAppDir,
+} from './resolve-consumer-app.mjs'
 
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 
@@ -30,24 +31,16 @@ const runNpm = (cwd, args, opts = {}) =>
   })
 
 let noBuild = false
-let appArg
+const filtered = []
 for (const a of process.argv.slice(2)) {
   if (a === '--no-build')
     noBuild = true
-  else if (!a.startsWith('-'))
-    appArg = a
+  else
+    filtered.push(a)
 }
 
-// Default: two dirs up from repo, then local-testing/alien-ui-nuxt (common Windows layout)
-const defaultApp = join(libRoot, '..', '..', 'local-testing', 'alien-ui-nuxt')
-const testApp = resolve(appArg ?? process.env.ALIEN_UI_TEST_APP ?? defaultApp)
-
-if (!existsSync(join(testApp, 'package.json'))) {
-  console.error(`[link-test-app] No package.json in:\n  ${testApp}`)
-  console.error('Pass the consumer app directory, or set ALIEN_UI_TEST_APP, for example:')
-  console.error('  npm run link:test-app -- C:\\\\Projects\\\\local-testing\\\\alien-ui-nuxt')
-  process.exit(1)
-}
+const testApp = resolveConsumerAppDir(filtered)
+assertConsumerPackageJson(testApp)
 
 if (!noBuild) {
   console.log('[link-test-app] npm run build (library)…')
