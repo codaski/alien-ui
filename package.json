@@ -1,6 +1,6 @@
 {
   "name": "@codaski/alien-ui",
-  "version": "0.2.3-beta",
+  "version": "0.2.4-beta",
   "description": "Vue 3 & Nuxt 4 UI kit — Reka UI, Tailwind CSS v4, TypeScript (pre-stable beta; see README).",
   "author": "Alien UI Contributors",
   "license": "MIT",

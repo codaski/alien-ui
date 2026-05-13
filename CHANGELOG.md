@@ -12,6 +12,18 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 - _Nothing yet._
 
+## [0.2.4-beta] - 2026-05-16
+
+Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
+
+### Fixed
+
+- **Tooling:** use **`defineConfig` from `vitest/config`** so the **`test`** block in **`vite.config.ts`** type-checks with Vitest-augmented Vite types.
+
+### Changed
+
+- **Build:** **`vite-plugin-dts`** (unplugin-dts) — replace deprecated **`outDir`** with **`outDirs`**; remove obsolete **`rollupTypes`** (bundling would require **`@microsoft/api-extractor`**; declarations still come from emit + **`vue-tsc --emitDeclarationOnly`** as before).
+
 ## [0.2.3-beta] - 2026-05-15
 
 Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
