@@ -138,7 +138,7 @@
   "bugs": {
     "url": "https://github.com/codaski/alien-ui/issues"
   },
-  "homepage": "https://www.npmjs.com/package/@codaski/alien-ui",
+  "homepage": "https://github.com/codaski/alien-ui#readme",
   "bin": {
     "alien-ui": "./dist/cli.mjs"
   }
