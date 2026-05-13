@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs'
 import { defineNuxtModule, addPlugin, addComponent, createResolver, addImportsDir, logger } from '@nuxt/kit'
 import type { Nuxt, ComponentsDir } from 'nuxt/schema'
 import type { AlienUIOptions } from './plugin'
@@ -84,7 +85,8 @@ export default defineNuxtModule<AlienUIModuleOptions>({
     addComponent({
       name:     `${prefix}Input`,
       export:   'AlienInput',
-      filePath: resolver.resolve('./components/forms/Input/index'),
+      // Barrel `index` is not emitted as `.mjs` with preserveModules; point at the SFC / built entry.
+      filePath: resolver.resolve('./components/forms/Input/Input'),
     })
 
     // ── Eject dir — prepend local overrides so they win over package ──────
@@ -94,6 +96,8 @@ export default defineNuxtModule<AlienUIModuleOptions>({
         : createResolver(nuxt.options.rootDir).resolve(options.ejectDir)
 
       nuxt.hook('components:dirs', (dirs: (string | ComponentsDir)[]) => {
+        if (!existsSync(dirRaw))
+          return
         dirs.unshift({
           path:   dirRaw,
           prefix: '',

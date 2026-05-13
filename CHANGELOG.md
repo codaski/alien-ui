@@ -10,7 +10,22 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 ### Changed
 
-- **Release workflow:** after publishing a semver **prerelease** to the **`beta`** dist-tag, CI runs **`npm dist-tag add … latest`** so npm’s default **`latest`** matches the newest beta (aligns the registry default with [GitHub](https://github.com/codaski/alien-ui) tags).
+- _Nothing yet._
+
+## [0.2.3-beta] - 2026-05-15
+
+Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
+
+### Fixed
+
+- **Nuxt module:** emit **`dist/plugin/nuxt-runtime.mjs`** (explicit Vite entry) so `addPlugin` resolves and `nuxi prepare` no longer hits ENOENT on the runtime plugin path.
+- **Nuxt module:** register **`AlienInput`** via **`components/forms/Input/Input`** instead of the barrel **`index`** (barrel has no emitted `.mjs` with preserve-modules).
+- **Nuxt module:** only register **`ejectDir`** in `components:dirs` when the directory exists (avoids “Components directory not found” for new apps).
+- **Build:** list **`node:fs`** as Rollup **`external`** so the emitted Nuxt module keeps a real `import { existsSync } from 'node:fs'` (Vite’s browser stub would break that guard at runtime).
+
+### Changed
+
+- **Release workflow:** tag pushes run a **`ci`** job first (`npm run ci`); **`publish`** runs only if **`ci`** succeeds. After publishing a prerelease to **`beta`**, **`latest`** is still updated to match (see [0.2.2-beta] notes).
 
 ## [0.2.2-beta] - 2026-05-15
 

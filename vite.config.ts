@@ -46,9 +46,11 @@ export default defineConfig({
     // ── Library mode ──────────────────────────────────────────────────────
     lib: {
       entry: {
-        index:    resolve(__dirname, 'src/index.ts'),
-        variants: resolve(__dirname, 'src/variants.ts'),
-        nuxt:     resolve(__dirname, 'src/nuxt.ts'),
+        index:                 resolve(__dirname, 'src/index.ts'),
+        variants:            resolve(__dirname, 'src/variants.ts'),
+        nuxt:                resolve(__dirname, 'src/nuxt.ts'),
+        /** Nuxt runtime plugin — not reachable from other entries; must emit `dist/plugin/nuxt-runtime.mjs`. */
+        'plugin/nuxt-runtime': resolve(__dirname, 'src/plugin/nuxt-runtime.ts'),
       },
       formats: ['es'],
     },
@@ -74,6 +76,7 @@ export default defineConfig({
         '#app',
         'nuxt/app',
         '@nuxt/kit',
+        'node:fs',
       ],
       output: {
         // Preserve module tree for per-component tree-shaking

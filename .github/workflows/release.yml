@@ -13,7 +13,27 @@ permissions:
   contents: read
 
 jobs:
+  ci:
+    name: Lint, typecheck, test, build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: CI
+        run: npm run ci
+
   release:
+    name: Publish to npm
+    needs: ci
     runs-on: ubuntu-latest
 
     steps:
