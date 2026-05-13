@@ -87,6 +87,7 @@
     "@vitejs/plugin-vue":          "^6.0.6",
     "vite-plugin-dts":             "^5.0.0",
     "vue-tsc":                     "^3.2.8",
+    "@vue/language-core":          "3.2.8",
 
     "vitest":                      "^4.1.6",
     "@vitest/coverage-v8":         "^4.1.6",

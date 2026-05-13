@@ -10,6 +10,7 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 ### Changed
 
+- **Build / `unplugin-dts`:** Add **`@vue/language-core`** as a devDependency (aligned with **`vue-tsc`**) so declarations build resolves the module under `npm ci`.
 - **npm `ci` / lockfile:** Direct devDependencies **`cac`** and **`commander`** plus **`overrides`** for Vite peer plugins under Nuxt DevTools keep `package-lock.json` complete and suppress spurious peer warnings with Vite **8**.
 - **Node.js `>=22`:** `engines`, [`.nvmrc`](./.nvmrc), and CI read the same version (fixes ESLint 10 / `Object.groupBy` on Node 20). Use `npm run ci` locally — it is what GitHub Actions runs after `npm ci`.
 - Long-form docs (`docs/`, `RULES.md`) removed from revision control via `.gitignore` so clones show source + public readme only; keep those trees locally if you rely on them. Public contributor entry-point is [.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md).
