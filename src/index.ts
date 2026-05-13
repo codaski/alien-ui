@@ -8,6 +8,8 @@
  * import '@codaski/alien-ui/styles'
  */
 
+import './styles/index.css'
+
 // ── Plugin ─────────────────────────────────────────────────────────────────
 export { createAlienUI } from './plugin'
 export type { AlienUIOptions } from './plugin'

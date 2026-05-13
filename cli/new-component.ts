@@ -9,6 +9,13 @@ import { mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import process from 'node:process'
 
+const validCategories = ['forms', 'blocks', 'layout', 'feedback'] as const
+type ComponentCategory = (typeof validCategories)[number]
+
+function isComponentCategory(s: string): s is ComponentCategory {
+  return (validCategories as readonly string[]).includes(s)
+}
+
 /** Args after sub-command (`--name X ...`) */
 export function runNewComponent(argv: readonly string[]): void {
   const args = [...argv]
@@ -17,7 +24,8 @@ export function runNewComponent(argv: readonly string[]): void {
   const catIdx = args.indexOf('--category')
 
   const name = nameIdx !== -1 ? args[nameIdx + 1] : undefined
-  const category = catIdx !== -1 ? args[catIdx + 1] : 'forms'
+  const categoryArg = catIdx !== -1 ? args[catIdx + 1] : undefined
+  const categoryResolved = categoryArg ?? 'forms'
 
   if (!name) {
     console.error('Usage: alien-ui new-component --name <ComponentName> [--category forms|blocks|layout|feedback]')
@@ -25,12 +33,13 @@ export function runNewComponent(argv: readonly string[]): void {
     return
   }
 
-  const validCategories = ['forms', 'blocks', 'layout', 'feedback'] as const
-  if (!(validCategories as readonly string[]).includes(category)) {
-    console.error(`Invalid category "${category}". Must be one of: ${validCategories.join(', ')}`)
+  if (!isComponentCategory(categoryResolved)) {
+    console.error(`Invalid category "${categoryResolved}". Must be one of: ${validCategories.join(', ')}`)
     process.exit(1)
     return
   }
+
+  const category: ComponentCategory = categoryResolved
 
   const root = resolve(import.meta.dirname, '..')
   const dir = join(root, 'src', 'components', category, name)

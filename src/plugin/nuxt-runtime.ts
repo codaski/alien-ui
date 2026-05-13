@@ -1,16 +1,20 @@
 import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
+import type { AlienColorMode } from '@/types'
 import { createAlienUI } from './index'
+
+/** Shape of `runtimeConfig.public.alienUI` set by the Nuxt module */
+interface AlienUIPublicRuntime {
+  locale?: string
+  colorMode?: AlienColorMode
+}
 
 export default defineNuxtPlugin((nuxtApp: NuxtApp) => {
   const config = useRuntimeConfig()
-  const alienConfig = (config.public as Record<string, unknown>).alienUI as {
-    locale?: string
-    colorMode?: string
-  } | undefined
+  const alienConfig = (config.public as { alienUI?: AlienUIPublicRuntime }).alienUI
 
   nuxtApp.vueApp.use(createAlienUI({
     locale:    alienConfig?.locale    ?? 'en',
-    colorMode: (alienConfig?.colorMode as 'light' | 'dark' | 'system') ?? 'system',
+    colorMode: alienConfig?.colorMode ?? 'system',
   }))
 })

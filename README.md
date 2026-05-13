@@ -58,17 +58,17 @@ Comfortable pinning while **`0.*`** evolves (stable **`latest`** channel):
 npm install '@codaski/alien-ui@~0.1.0'
 ```
 
-**Prereleases** (semver prerelease id, e.g. **`0.2.0-beta`**): use the **`beta`** tag or an exact version:
+**Prereleases** (semver prerelease id, e.g. **`0.2.1-beta`**): use the **`beta`** tag or an exact version:
 
 ```bash
 npm install @codaski/alien-ui@beta
-npm install '@codaski/alien-ui@0.2.0-beta'
+npm install '@codaski/alien-ui@0.2.1-beta'
 ```
 
 From **`npm pack` tarball**:
 
 ```bash
-npm install /absolute/path/to/codaski-alien-ui-0.2.0-beta.tgz
+npm install /absolute/path/to/codaski-alien-ui-0.2.1-beta.tgz
 ```
 
 Local **`file:`** path (monorepos / workspaces):
@@ -81,7 +81,7 @@ Local **`file:`** path (monorepos / workspaces):
 }
 ```
 
-See above for **`npm install @codaski/alien-ui@beta`** · exact **`0.2.0-beta`**, and tarball names.
+See above for **`npm install @codaski/alien-ui@beta`** · exact **`0.2.1-beta`**, and tarball names.
 
 ---
 
@@ -141,9 +141,43 @@ import { AlienInput } from '@codaski/alien-ui/components/forms'
 
 ## Nuxt 4
 
+Nuxt **never auto-discovers** third-party modules: you install the package and add **`@codaski/alien-ui/nuxt`** to **`modules`** yourself (no extra Nuxt “enable module” wizard).
+
+### Setup (install + config)
+
+1. Install Alien UI **and** Tailwind in the **same app** (styles depend on them):
+
+   ```bash
+   npm install @codaski/alien-ui tailwindcss @tailwindcss/vite
+   ```
+
+2. Register the module in **`nuxt.config.ts`** (and add the Vite plugin Tailwind expects — Nuxt 4 typically uses `defineNuxtConfig` + `vite.plugins`):
+
+   ```ts
+   import tailwindcss from '@tailwindcss/vite'
+
+   export default defineNuxtConfig({
+     modules: ['@codaski/alien-ui/nuxt'],
+     vite: {
+       plugins: [tailwindcss()],
+       resolve: { dedupe: ['vue'] },
+     },
+     alienUI: {
+       // locale: 'en',
+       // colorMode: 'system' | 'light' | 'dark',
+       // prefix: 'Alien',
+       // ejectDir: '~/components/alien',
+     },
+   })
+   ```
+
+3. Start dev or build — the module injects styles using a **file path** inside the package so Vite can resolve CSS correctly.
+
 The module wires **CSS**, **`createAlienUI()`**, **composables auto-import**, and registered components (**`AlienInput` → `<AlienInput />`**).
 
-### `nuxt.config.ts`
+### `nuxt.config.ts` (minimal)
+
+If you already have Tailwind configured elsewhere, you only need the module line + options:
 
 ```ts
 export default defineNuxtConfig({

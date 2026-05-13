@@ -81,6 +81,13 @@ export default defineConfig({
         preserveModulesRoot: 'src',
         entryFileNames:      '[name].mjs',
         chunkFileNames:      '[name]-[hash].mjs',
+        // Single CSS chunk (from `import './styles/index.css'` in index.ts) — must match `package.json` exports `./styles`
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.names?.[0] ?? assetInfo.name
+          if (typeof name === 'string' && name.endsWith('.css'))
+            return 'styles/index.css'
+          return '[name]-[hash][extname]'
+        },
       },
     },
 

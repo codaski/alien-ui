@@ -1,114 +1,102 @@
 {
   "name": "@codaski/alien-ui",
-  "version": "0.2.0-beta",
+  "version": "0.2.1-beta",
   "description": "Vue 3 & Nuxt 4 UI kit — Reka UI, Tailwind CSS v4, TypeScript (pre-stable beta; see README).",
   "author": "Alien UI Contributors",
   "license": "MIT",
   "type": "module",
-
   "engines": {
     "node": ">=22.0.0",
     "npm": ">=10.0.0"
   },
-
-  "sideEffects": ["**/*.css", "dist/styles/**"],
-
-  "files": ["dist", "src"],
-
+  "sideEffects": [
+    "**/*.css",
+    "dist/styles/**"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "types":  "./dist/index.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./nuxt": {
       "import": "./dist/nuxt.mjs",
-      "types":  "./dist/nuxt.d.ts"
+      "types": "./dist/nuxt.d.ts"
     },
-    "./styles":   "./dist/styles/index.css",
+    "./styles": "./dist/styles/index.css",
     "./variants": {
       "import": "./dist/variants.mjs",
-      "types":  "./dist/variants.d.ts"
+      "types": "./dist/variants.d.ts"
     },
     "./components/*": {
       "import": "./dist/components/*.mjs",
-      "types":  "./dist/components/*.d.ts"
+      "types": "./dist/components/*.d.ts"
     }
   },
-
-  "main":   "./dist/index.mjs",
+  "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "types":  "./dist/index.d.ts",
-
+  "types": "./dist/index.d.ts",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-
   "scripts": {
-    "dev":             "vite",
-    "build":           "vite build && vue-tsc --emitDeclarationOnly && npm run build:cli",
-    "build:cli":       "esbuild cli/cli.ts --bundle --platform=node --format=esm --outfile=dist/cli.mjs --banner:js=\"#!/usr/bin/env node\" --legal-comments=none",
-    "typecheck":       "vue-tsc --noEmit",
-    "test":            "vitest run",
-    "test:watch":      "vitest",
-    "test:ui":         "vitest --ui",
-    "test:coverage":   "vitest run --coverage",
-    "lint":            "eslint .",
-    "lint:fix":        "eslint . --fix",
-    "new:component":     "tsx cli/cli.ts new-component",
-    "prepublishOnly":    "npm run lint && npm run typecheck && npm run test && npm run build",
-    "ci":                  "npm run lint && npm run typecheck && npm run test && npm run build && npm pack --dry-run",
-    "publish:beta":      "npm publish --access public --tag beta"
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly && npm run build:cli",
+    "build:cli": "esbuild cli/cli.ts --bundle --platform=node --format=esm --outfile=dist/cli.mjs --banner:js=\"#!/usr/bin/env node\" --legal-comments=none",
+    "typecheck": "vue-tsc --noEmit && tsc -p tsconfig.cli.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "new:component": "tsx cli/cli.ts new-component",
+    "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "ci": "npm run lint && npm run typecheck && npm run test && npm run build && npm pack --dry-run",
+    "publish:beta": "npm publish --access public --tag beta"
   },
-
   "peerDependencies": {
     "vue": ">=3.5.0"
   },
-
   "dependencies": {
-    "@nuxt/kit":                "^4.4.5",
-    "reka-ui":                  "^2.9.7",
-    "vee-validate":             "^5.0.0-beta.1",
-    "zod":                      "^4.4.3",
-    "vue-i18n":                 "^11.4.2",
+    "@nuxt/kit": "^4.4.5",
     "class-variance-authority": "^0.7.1",
-    "clsx":                     "^2.1.1",
-    "tailwind-merge":           "^3.6.0"
+    "clsx": "^2.1.1",
+    "reka-ui": "^2.9.7",
+    "tailwind-merge": "^3.6.0",
+    "vee-validate": "^5.0.0-beta.1",
+    "vue-i18n": "^11.4.2",
+    "zod": "^4.4.3"
   },
-
   "devDependencies": {
-    "vue":                         "^3.5.34",
-
-    "tailwindcss":                 "^4.3.0",
-    "@tailwindcss/vite":           "^4.3.0",
-
-    "typescript":                  "^6.0.3",
-    "vite":                        "^8.0.12",
-    "@vitejs/plugin-vue":          "^6.0.6",
-    "vite-plugin-dts":             "^5.0.0",
-    "vue-tsc":                     "^3.2.8",
-    "@vue/language-core":          "3.2.8",
-
-    "vitest":                      "^4.1.6",
-    "@vitest/coverage-v8":         "^4.1.6",
-    "@vue/test-utils":             "^2.4.10",
-    "@testing-library/vue":        "^8.1.0",
+    "@antfu/eslint-config": "^8.2.0",
+    "@tailwindcss/vite": "^4.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "happy-dom":                   "^20.9.0",
-
-    "eslint":                      "^10.3.0",
-    "@antfu/eslint-config":        "^8.2.0",
-
-    "nuxt":                        "^4.4.5",
-
-    "tsx":                         "^4.21.0",
-
-    "esbuild":                     "^0.27.7",
-
-    "cac":                         "6.7.14",
-    "commander":                   "13.1.0"
+    "@testing-library/vue": "^8.1.0",
+    "@types/node": "^22.19.19",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "@vitest/coverage-v8": "^4.1.6",
+    "@vue/language-core": "3.2.8",
+    "@vue/test-utils": "^2.4.10",
+    "cac": "6.7.14",
+    "commander": "13.1.0",
+    "esbuild": "^0.27.7",
+    "eslint": "^10.3.0",
+    "happy-dom": "^20.9.0",
+    "nuxt": "^4.4.5",
+    "tailwindcss": "^4.3.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.12",
+    "vite-plugin-dts": "^5.0.0",
+    "vitest": "^4.1.6",
+    "vue": "^3.5.34",
+    "vue-tsc": "^3.2.8"
   },
-
   "overrides": {
     "vite-plugin-inspect": {
       "vite": "$vite"
@@ -120,7 +108,6 @@
       "vite": "$vite"
     }
   },
-
   "keywords": [
     "alien-ui",
     "@codaski/alien-ui",
@@ -144,18 +131,14 @@
     "zod",
     "vee-validate"
   ],
-
   "repository": {
     "type": "git",
-    "url":  "https://github.com/codaski/alien-ui.git"
+    "url": "https://github.com/codaski/alien-ui.git"
   },
-
   "bugs": {
     "url": "https://github.com/codaski/alien-ui/issues"
   },
-
   "homepage": "https://www.npmjs.com/package/@codaski/alien-ui",
-
   "bin": {
     "alien-ui": "./dist/cli.mjs"
   }

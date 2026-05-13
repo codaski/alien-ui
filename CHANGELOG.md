@@ -12,6 +12,20 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 - _Nothing yet._
 
+## [0.2.1-beta] - 2026-05-14
+
+Prerelease under the **`beta`** dist-tag. **Local `npm run ci` passed** before tag.
+
+### Fixed
+
+- **Published stylesheet:** build now emits **`dist/styles/index.css`** so **`@codaski/alien-ui/styles`** and `package.json` **`exports["./styles"]`** resolve on disk after `npm pack` / install.
+
+### Changed
+
+- **Vite:** `assetFileNames` routes the Tailwind bundle to **`styles/index.css`**; main entry side-imports styles so the CSS is produced.
+- **Nuxt:** stricter `nuxt/schema` hook typings; runtime config typed for `createAlienUI`.
+- **TypeScript:** `ImportMetaEnv`, CLI `tsconfig`, **`@types/node`**, and `npm run typecheck` covers `cli/`.
+
 ## [0.2.0-beta] - 2026-05-13
 
 First npm-oriented prerelease under **`@codaski/alien-ui`** at this version train; published under the **`beta`** dist-tag (**`npm install @codaski/alien-ui@beta`**).
@@ -48,7 +62,8 @@ First public **beta** (package name later **`@codaski/alien-ui`**; was planned a
 - **Vite:** `rolldownOptions` (incl. **`pluginTimings: false`**); tests mount **`createAlienUI()`** to avoid `useLocale()` stderr noise.
 - Maintainer-only **`docs/`** + **`RULES.md`** gitignored; public entry [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
 
-[Unreleased]: https://github.com/codaski/alien-ui/compare/v0.2.0-beta...HEAD
+[Unreleased]: https://github.com/codaski/alien-ui/compare/v0.2.1-beta...HEAD
+[0.2.1-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.2.1-beta
 [0.2.0-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.2.0-beta
 [0.1.1-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.1.1-beta
 [0.1.0]: https://github.com/codaski/alien-ui/releases/tag/v0.1.0

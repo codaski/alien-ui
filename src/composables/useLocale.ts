@@ -39,7 +39,7 @@ export function useLocale(): AlienLocaleContext {
   if (ctx) return ctx
 
   // Fallback when no provider (dev warning in development)
-  if (import.meta.env?.DEV) {
+  if (import.meta.env.DEV) {
     console.warn('[alien-ui] useLocale(): no locale provider found. '
       + 'Make sure you called app.use(createAlienUI()).')
   }
