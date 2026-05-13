@@ -58,17 +58,17 @@ Comfortable pinning while **`0.*`** evolves (stable **`latest`** channel):
 npm install '@codaski/alien-ui@~0.1.0'
 ```
 
-**Prereleases** (semver build with a hyphen, e.g. **`0.1.1-beta`**): use the **`beta`** tag or an exact version:
+**Prereleases** (semver prerelease id, e.g. **`0.2.0-beta`**): use the **`beta`** tag or an exact version:
 
 ```bash
 npm install @codaski/alien-ui@beta
-npm install '@codaski/alien-ui@0.1.1-beta'
+npm install '@codaski/alien-ui@0.2.0-beta'
 ```
 
 From **`npm pack` tarball**:
 
 ```bash
-npm install /absolute/path/to/codaski-alien-ui-0.1.1-beta.tgz
+npm install /absolute/path/to/codaski-alien-ui-0.2.0-beta.tgz
 ```
 
 Local **`file:`** path (monorepos / workspaces):
@@ -81,7 +81,7 @@ Local **`file:`** path (monorepos / workspaces):
 }
 ```
 
-See above for **`npm install @codaski/alien-ui@beta`** · exact **`0.1.1-beta`**, and tarball names.
+See above for **`npm install @codaski/alien-ui@beta`** · exact **`0.2.0-beta`**, and tarball names.
 
 ---
 

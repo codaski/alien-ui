@@ -42,7 +42,7 @@ jobs:
 
       - name: Publish to npm
         shell: bash
-        # Prereleases ( hyphen in semver, e.g. 0.1.1-beta ) MUST NOT overwrite npm "latest".
+        # Prereleases ( hyphen in semver, e.g. 0.2.0-beta ) MUST NOT overwrite npm "latest".
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |

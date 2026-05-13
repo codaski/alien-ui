@@ -23,7 +23,7 @@ npm pack
 In a separate Nuxt 4 playground:
 
 ```bash
-npm install /absolute/path/to/codaski-alien-ui-0.1.1-beta.tgz
+npm install /absolute/path/to/codaski-alien-ui-0.2.0-beta.tgz
 ```
 
 Or in that app’s `package.json`:
