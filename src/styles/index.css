@@ -1,0 +1,7 @@
+/**
+ * Alien UI — Style entry point.
+ *
+ * Import this once in your app:
+ *   import 'alien-ui/styles'
+ */
+@import "./base.css";

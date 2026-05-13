@@ -1,0 +1,61 @@
+{
+  "alien-ui": {
+    "common": {
+      "clear":    "Clear",
+      "close":    "Close",
+      "search":   "Search",
+      "loading":  "Loading…",
+      "select":   "Select",
+      "required": "Required"
+    },
+    "input": {
+      "placeholder": "Enter a value",
+      "clear":       "Clear input"
+    },
+    "textarea": {
+      "placeholder":    "Enter text",
+      "charactersLeft": "{count} characters left"
+    },
+    "select": {
+      "placeholder":       "Select an option",
+      "noOptions":         "No options available",
+      "searchPlaceholder": "Search options…"
+    },
+    "checkbox": {
+      "label": "Checkbox"
+    },
+    "datepicker": {
+      "placeholder": "Select a date",
+      "clear":       "Clear date"
+    },
+    "fileupload": {
+      "prompt":    "Drag and drop a file here",
+      "or":        "or",
+      "browse":    "Browse files",
+      "maxSize":   "Max file size: {size}",
+      "typeError": "This file type is not allowed",
+      "sizeError": "File exceeds the maximum allowed size"
+    },
+    "validation": {
+      "required":  "This field is required",
+      "email":     "Enter a valid email address",
+      "minLength": "Minimum {min} characters required",
+      "maxLength": "Maximum {max} characters allowed",
+      "min":       "Minimum value is {min}",
+      "max":       "Maximum value is {max}",
+      "pattern":   "Invalid format",
+      "url":       "Enter a valid URL",
+      "numeric":   "Must be a number",
+      "integer":   "Must be a whole number"
+    },
+    "modal": {
+      "close": "Close modal"
+    },
+    "drawer": {
+      "close": "Close drawer"
+    },
+    "toast": {
+      "dismiss": "Dismiss notification"
+    }
+  }
+}

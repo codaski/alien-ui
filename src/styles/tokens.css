@@ -1,0 +1,78 @@
+/**
+ * Alien UI — Design tokens.
+ *
+ * All colours use HSL channel values (no hsl() wrapper) so that
+ * Tailwind's opacity modifier syntax works: bg-primary/50
+ *
+ * To override in your project:
+ *   @import "alien-ui/styles";
+ *   :root { --alien-primary: 265 90% 60%; }
+ */
+
+:root {
+  /* ── Colour palette ──────────────────────────────────────────────────── */
+  --alien-primary:                  210 100% 56%;
+  --alien-primary-foreground:       0 0% 100%;
+
+  --alien-secondary:                220 14% 96%;
+  --alien-secondary-foreground:     220 9% 46%;
+
+  --alien-surface:                  0 0% 100%;
+  --alien-surface-elevated:         0 0% 98%;
+
+  --alien-foreground:               224 71% 4%;
+
+  --alien-border:                   220 13% 91%;
+
+  --alien-muted:                    220 13% 91%;
+  --alien-muted-foreground:         220 9% 46%;
+
+  --alien-destructive:              0 72% 51%;
+  --alien-destructive-foreground:   0 0% 100%;
+
+  --alien-success:                  142 71% 45%;
+  --alien-success-foreground:       0 0% 100%;
+
+  --alien-warning:                  38 92% 50%;
+  --alien-warning-foreground:       0 0% 100%;
+
+  /* ── Shape ───────────────────────────────────────────────────────────── */
+  --alien-radius-sm:    0.25rem;
+  --alien-radius:       0.5rem;
+  --alien-radius-lg:    0.75rem;
+  --alien-radius-xl:    1rem;
+
+  /* ── Shadows ─────────────────────────────────────────────────────────── */
+  --alien-shadow-sm:    0 1px 2px rgb(0 0 0 / 0.05);
+  --alien-shadow:       0 1px 3px rgb(0 0 0 / 0.1), 0 1px 2px rgb(0 0 0 / 0.06);
+  --alien-shadow-md:    0 4px 6px rgb(0 0 0 / 0.07), 0 2px 4px rgb(0 0 0 / 0.06);
+  --alien-shadow-lg:    0 10px 15px rgb(0 0 0 / 0.1), 0 4px 6px rgb(0 0 0 / 0.05);
+
+  /* ── Typography ──────────────────────────────────────────────────────── */
+  --alien-font-sans:    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --alien-font-mono:    ui-monospace, SFMono-Regular, "SF Mono", Consolas,
+                        "Liberation Mono", Menlo, monospace;
+}
+
+/* ── Dark mode overrides ─────────────────────────────────────────────────── */
+.dark {
+  --alien-primary:                  217 91% 60%;
+  --alien-primary-foreground:       222 47% 11%;
+
+  --alien-secondary:                217 33% 17%;
+  --alien-secondary-foreground:     215 20% 65%;
+
+  --alien-surface:                  224 71% 4%;
+  --alien-surface-elevated:         222 47% 8%;
+
+  --alien-foreground:               213 31% 91%;
+
+  --alien-border:                   216 34% 17%;
+
+  --alien-muted:                    223 47% 11%;
+  --alien-muted-foreground:         215 20% 65%;
+
+  --alien-destructive:              0 63% 31%;
+  --alien-destructive-foreground:   210 40% 98%;
+}

@@ -1,0 +1,110 @@
+/**
+ * Alien UI — Base styles (Tailwind CSS v4, CSS-first config).
+ *
+ * This file IS the Tailwind configuration. No tailwind.config.ts needed.
+ * Consumers import this once: import 'alien-ui/styles'
+ *
+ * Tailwind v4 docs: https://tailwindcss.com/docs/installation/using-vite
+ */
+
+/* ── 1. Import Tailwind CSS v4 ─────────────────────────────────────────── */
+@import "tailwindcss";
+
+/* ── 2. Design tokens as CSS custom properties ─────────────────────────── */
+@import "./tokens.css";
+
+/* ── 3. Tailwind theme — maps --alien-* vars to utility classes ────────── */
+/*
+ * @theme lets Tailwind v4 generate utility classes from CSS variables.
+ * e.g. bg-primary, text-destructive, border-border, rounded-DEFAULT
+ */
+@theme {
+  /* ── Colours ─────────────────────────────────────────────────────────── */
+  --color-primary:                hsl(var(--alien-primary));
+  --color-primary-foreground:     hsl(var(--alien-primary-foreground));
+
+  --color-secondary:              hsl(var(--alien-secondary));
+  --color-secondary-foreground:   hsl(var(--alien-secondary-foreground));
+
+  --color-surface:                hsl(var(--alien-surface));
+  --color-surface-elevated:       hsl(var(--alien-surface-elevated));
+
+  --color-foreground:             hsl(var(--alien-foreground));
+
+  --color-border:                 hsl(var(--alien-border));
+
+  --color-muted:                  hsl(var(--alien-muted));
+  --color-muted-foreground:       hsl(var(--alien-muted-foreground));
+
+  --color-destructive:            hsl(var(--alien-destructive));
+  --color-destructive-foreground: hsl(var(--alien-destructive-foreground));
+
+  --color-success:                hsl(var(--alien-success));
+  --color-success-foreground:     hsl(var(--alien-success-foreground));
+
+  --color-warning:                hsl(var(--alien-warning));
+  --color-warning-foreground:     hsl(var(--alien-warning-foreground));
+
+  /* ── Border radius ───────────────────────────────────────────────────── */
+  --radius-sm:      var(--alien-radius-sm);
+  --radius-DEFAULT: var(--alien-radius);
+  --radius-lg:      var(--alien-radius-lg);
+  --radius-xl:      var(--alien-radius-xl);
+
+  /* ── Shadows ─────────────────────────────────────────────────────────── */
+  --shadow-sm:      var(--alien-shadow-sm);
+  --shadow-DEFAULT: var(--alien-shadow);
+  --shadow-md:      var(--alien-shadow-md);
+  --shadow-lg:      var(--alien-shadow-lg);
+
+  /* ── Typography ──────────────────────────────────────────────────────── */
+  --font-sans: var(--alien-font-sans);
+  --font-mono: var(--alien-font-mono);
+
+  /* ── Animations ──────────────────────────────────────────────────────── */
+  --animate-alien-in:       alien-in 150ms ease-out;
+  --animate-alien-out:      alien-out 150ms ease-in;
+  --animate-alien-slide-in: alien-slide-in 200ms ease-out;
+  --animate-alien-fade:     alien-fade 200ms ease-out;
+}
+
+/* ── 4. Keyframe definitions ───────────────────────────────────────────── */
+@keyframes alien-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+@keyframes alien-out {
+  from { opacity: 1; transform: translateY(0)    scale(1);    }
+  to   { opacity: 0; transform: translateY(-4px) scale(0.97); }
+}
+
+@keyframes alien-slide-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0);    }
+}
+
+@keyframes alien-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── 5. Base layer resets ──────────────────────────────────────────────── */
+@layer base {
+  /* Consistent focus ring across all interactive elements */
+  *:focus-visible {
+    outline:        none;
+    outline-offset: 2px;
+    box-shadow:     0 0 0 2px hsl(var(--alien-surface)),
+                    0 0 0 4px hsl(var(--alien-primary));
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration:        0.01ms !important;
+      animation-iteration-count: 1      !important;
+      transition-duration:       0.01ms !important;
+    }
+  }
+}
