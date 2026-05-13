@@ -61,3 +61,8 @@ coverage/
 # Test artefacts
 test-results/
 playwright-report/
+
+# Maintainer-only documentation (never committed → not visible on public GitHub clones).
+# See README: "Contributor documentation".
+/docs/
+/RULES.md

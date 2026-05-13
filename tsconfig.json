@@ -13,7 +13,6 @@
     "exactOptionalPropertyTypes":  true,
     "noImplicitReturns":           true,
     "noFallthroughCasesInSwitch":  true,
-    "ignoreDeprecations":          "6.0",
     "rootDir":                     "./src",
 
     // ── Vue / JSX ─────────────────────────────────────────────────────────
@@ -21,9 +20,8 @@
     "jsxImportSource":      "vue",
 
     // ── Paths ─────────────────────────────────────────────────────────────
-    "baseUrl": ".",
     "paths": {
-      "@/*":       ["./src/*"],
+      "@/*":            ["./src/*"],
       "@alien-ui/vue":  ["./src/index.ts"]
     },
 

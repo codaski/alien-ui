@@ -1,13 +1,14 @@
 {
   "name": "@alien-ui/vue",
   "version": "0.1.0",
-  "description": "Vue 3 / Nuxt component library — themed, headless-ready, and fully ejectable",
+  "description": "Vue 3 & Nuxt 4 UI kit — Reka UI, Tailwind CSS v4, TypeScript (pre-stable beta; see README).",
   "author": "Alien UI Contributors",
   "license": "MIT",
   "type": "module",
 
   "engines": {
-    "node": ">=20.10.0"
+    "node": ">=20.10.0",
+    "npm": ">=10.0.0"
   },
 
   "sideEffects": ["**/*.css", "dist/styles/**"],
@@ -54,8 +55,9 @@
     "test:coverage":   "vitest run --coverage",
     "lint":            "eslint .",
     "lint:fix":        "eslint . --fix",
-    "new:component":   "tsx cli/cli.ts new-component",
-    "prepublishOnly":  "npm run lint && npm run typecheck && npm run test && npm run build"
+    "new:component":     "tsx cli/cli.ts new-component",
+    "prepublishOnly":    "npm run lint && npm run typecheck && npm run test && npm run build",
+    "publish:beta":      "npm publish --access public --tag beta"
   },
 
   "peerDependencies": {
@@ -103,8 +105,27 @@
   },
 
   "keywords": [
-    "vue", "nuxt", "ui", "components", "tailwind", "reka-ui",
-    "design-system", "headless", "accessible", "typescript"
+    "alien-ui",
+    "@alien-ui/vue",
+    "vue",
+    "vue3",
+    "vue-components",
+    "nuxt",
+    "nuxt4",
+    "nuxt-module",
+    "tailwind",
+    "tailwindcss",
+    "tailwind-css",
+    "reka-ui",
+    "headless-ui",
+    "design-system",
+    "ui-kit",
+    "components",
+    "typescript",
+    "accessible",
+    "vue-i18n",
+    "zod",
+    "vee-validate"
   ],
 
   "repository": {
@@ -116,7 +137,7 @@
     "url": "https://github.com/codaski/alien-ui/issues"
   },
 
-  "homepage": "https://github.com/codaski/alien-ui#readme",
+  "homepage": "https://www.npmjs.com/package/@alien-ui/vue",
 
   "bin": {
     "alien-ui": "./dist/cli.mjs"

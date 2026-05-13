@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*'
 
+concurrency:
+  group: release-npm
+  cancel-in-progress: false
+
 permissions:
   contents: read
 
@@ -25,6 +29,7 @@ jobs:
         run: npm ci
 
       - name: Publish to npm
+        # Add --provenance after enabling npm Trusted Publishers (OIDC) for this repo; see https://docs.npmjs.com/trusted-publishers
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
