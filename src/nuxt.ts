@@ -83,9 +83,8 @@ export default defineNuxtModule<AlienUIModuleOptions>({
     const prefix = options.prefix ?? 'Alien'
 
     addComponent({
-      name:     `${prefix}Input`,
-      export:   'AlienInput',
-      // Barrel `index` is not emitted as `.mjs` with preserveModules; point at the SFC / built entry.
+      name: `${prefix}Input`,
+      // Built `Input.mjs` only exposes `default` (compiled SFC), not named `AlienInput`.
       filePath: resolver.resolve('./components/forms/Input/Input'),
     })
 

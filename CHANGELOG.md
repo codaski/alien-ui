@@ -12,6 +12,14 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 - _Nothing yet._
 
+## [0.2.5-beta] - 2026-05-16
+
+Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
+
+### Fixed
+
+- **Nuxt module:** `addComponent` for **`AlienInput`** must use the **`default`** export from the built **`Input.mjs`** chunk. The previous **`export: 'AlienInput'`** pointed at a named export that does not exist in that file, so `<AlienInput />` resolved to **`undefined`** at runtime (Vue “Invalid vnode type” / missing render).
+
 ## [0.2.4-beta] - 2026-05-16
 
 Prerelease on the **`beta`** dist-tag (`npm install @codaski/alien-ui@beta`).
