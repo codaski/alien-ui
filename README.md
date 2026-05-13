@@ -75,9 +75,9 @@ Only a **small set of components is implemented today** (for example **Input**);
 | Form state | [VeeValidate](https://vee-validate.logaretm.com/v5/) | `^5.x` beta |
 | Internationalisation | [vue-i18n](https://vue-i18n.intlify.dev) | `^11.x` |
 | Bundler | [Vite](https://vitejs.dev) + `@tailwindcss/vite` | `^8.x` |
-| Package manager | npm | `^11.x` |
+| Package manager | npm | `>=10` (see [`package.json`](./package.json) **`engines`**; reproducible installs use `npm ci`) |
 
----
+Use **`package.json`** for exact semver ranges and lockfile-pinned resolves.
 
 ## Developing this library
 
