@@ -1,6 +1,6 @@
 # Changelog
 
-Notable changes to `@alien-ui/vue` are listed here.
+Notable changes to **`@alien-ui/vue`** (npm org **`alien-ui`**) are listed here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and [Semantic Versioning](https://semver.org/spec/v2.0.0.html) applies. During **pre-1.0** (`0.y.z`),

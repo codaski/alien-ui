@@ -1,7 +1,7 @@
 /**
  * Alien UI — Main package entry point.
  *
- * Import path: `alien-ui`
+ * Import path: `@alien-ui/vue`
  *
  * @example
  * import { createAlienUI, AlienInput } from '@alien-ui/vue'

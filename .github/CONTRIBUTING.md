@@ -23,7 +23,7 @@ npm pack
 In a separate Nuxt 4 playground:
 
 ```bash
-npm install /absolute/path/to/@alien-ui-vue-0.1.0.tgz
+npm install /absolute/path/to/alien-ui-vue-0.1.1-beta.tgz
 ```
 
 Or in that app’s `package.json`:

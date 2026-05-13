@@ -23,7 +23,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: npm
-          # Scoped publish: maps @alien-ui to npm and wires auth via NODE_AUTH_TOKEN (project .npmrc).
+          # Scoped publish: maps @alien-ui (npm org) and wires auth via NODE_AUTH_TOKEN (project .npmrc).
           registry-url: https://registry.npmjs.org/
           scope: '@alien-ui'
 
