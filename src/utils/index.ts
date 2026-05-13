@@ -3,4 +3,5 @@
  */
 export { cn } from './cn'
 export { useAlienId } from './id'
-export { toAlienSchema, resolveFieldError } from './validation'
+export { resolveFieldError } from './validation'
+export type { InferSchema } from './validation'

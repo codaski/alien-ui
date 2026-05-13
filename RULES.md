@@ -220,30 +220,51 @@ Don't depend on Vue's injection context implicitly. Accept context via parameter
 
 ## 4. Validation rules
 
-### 4.1 Zod is the schema language
+### 4.1 Zod v4 is the schema language — pass directly to VeeValidate v5
 
-All form validation schemas use Zod. VeeValidate consumes them via `toTypedSchema`.
+All form validation schemas use **Zod v4**. VeeValidate v5 consumes Zod schemas
+**directly** via the Standard Schema spec — **no `toTypedSchema()`, no adapter, no
+`@vee-validate/zod` package**.
 
 ```ts
 import { z } from 'zod'
-import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
 
 const schema = z.object({
   email: z.string().email(),
   age:   z.number().min(18),
 })
 
-const validationSchema = toTypedSchema(schema)
+// ✅ correct — pass schema directly, VeeValidate v5 reads Standard Schema natively
+const { handleSubmit, errors } = useForm({ validationSchema: schema })
+
+// ❌ wrong — toTypedSchema() no longer exists in vee-validate v5
+// const { handleSubmit } = useForm({ validationSchema: toTypedSchema(schema) })
 ```
 
-### 4.2 Validation errors display through the component's `error` prop
+### 4.2 Never import `@vee-validate/zod`
+
+That package is **deprecated** as of VeeValidate v5 and is incompatible with Zod v4.
+It must not appear anywhere in this codebase.
+
+### 4.3 Use `InferSchema<typeof schema>` for type inference
+
+```ts
+import type { InferSchema } from 'alien-ui'
+
+const schema = z.object({ email: z.string() })
+type FormData = InferSchema<typeof schema>
+// → { email: string }
+```
+
+### 4.4 Validation errors display through the component's `error` prop
 
 Never render raw VeeValidate error DOM outside of a component.
 Components accept an `error?: string` prop and render it consistently.
 
-### 4.3 Field names match schema keys exactly
+### 4.5 Field names match schema keys exactly
 
-The `name` prop on a form field must match the Zod schema key. No magic string mapping.
+The `name` prop on a form field must match the Zod schema key exactly. No magic string mapping.
 
 ---
 

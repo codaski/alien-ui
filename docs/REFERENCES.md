@@ -169,27 +169,33 @@ export default defineConfig({ plugins: [tailwindcss(), vue()] })
 
 | Property | Value |
 |---|---|
-| **Version** | `^3.23.0` (pinned to v3) |
+| **Version** | `^4.4.3` |
 | **Docs** | https://zod.dev |
 | **GitHub** | https://github.com/colinhacks/zod |
 | **npm** | `zod` |
 
-> **⚠️ Zod v4 (4.4.3) is now available on npm** but we pin to `^3.x` because
-> `@vee-validate/zod@4.15.1` still targets Zod v3.
->
-> Upgrade path: when VeeValidate v5 (currently beta) is stable, we can drop
-> `@vee-validate/zod` and use Zod v4 natively via Standard Schema support.
-> Track: https://github.com/logaretm/vee-validate/releases
+Zod v4 natively implements the **Standard Schema spec** (`~standard` symbol on every
+schema object). VeeValidate v5 reads this directly — no adapter package required.
+
+**Zod v4 API notes vs v3:**
+- `z.string()`, `z.object()`, `z.number()`, `.email()`, `.min()`, `.safeParse()` — unchanged
+- `ZodTypeAny` removed → use `ZodType` as the base generic type
+- `z.infer<typeof schema>` still works; library uses `output<T>` from `'zod'` internally
+- `z.string().email()` — now uses a built-in `ZodEmail` class, same end-user API
 
 **Usage pattern:**
 
 ```ts
 import { z } from 'zod'
+import type { InferSchema } from 'alien-ui'
+
 const loginSchema = z.object({
   email:    z.string().email('Enter a valid email'),
   password: z.string().min(8, 'Minimum 8 characters'),
 })
-type LoginData = z.infer<typeof loginSchema>
+
+type LoginData = InferSchema<typeof loginSchema>
+// → { email: string; password: string }
 ```
 
 ---
@@ -198,25 +204,35 @@ type LoginData = z.infer<typeof loginSchema>
 
 | Property | Value |
 |---|---|
-| **Version** | `^4.15.1` |
-| **Docs** | https://vee-validate.logaretm.com/v4/ |
+| **Version** | `^5.0.0-beta.1` |
+| **Docs** | https://vee-validate.logaretm.com/v5/ |
+| **Migration guide** | https://vee-validate.logaretm.com/v5/guide/migration/ |
 | **GitHub** | https://github.com/logaretm/vee-validate |
-| **npm** | `vee-validate` + `@vee-validate/zod` |
+| **npm** | `vee-validate` only — **no companion packages** |
 
-> VeeValidate v5 (beta) will natively support Zod v4, Valibot, and Yup via
-> Standard Schema — no companion packages needed. Watch for stable release.
+VeeValidate v5 consumes Standard Schema libraries (Zod, Valibot, Yup) **directly**.
+The `@vee-validate/zod` companion package is **deprecated and must not be used**.
 
-**Integration with Zod v3:**
+**Integration with Zod v4 — pass schema directly:**
 
 ```ts
 import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
 
-const { handleSubmit, errors } = useForm({
-  validationSchema: toTypedSchema(loginSchema),
+const schema = z.object({
+  email:    z.string().email(),
+  password: z.string().min(8),
 })
+
+// ✅ No toTypedSchema() — pass schema directly
+const { handleSubmit, errors } = useForm({ validationSchema: schema })
 ```
+
+**Key v5 changes from v4:**
+- `toTypedSchema()` removed — schemas passed directly
+- `@vee-validate/zod`, `@vee-validate/yup`, `@vee-validate/valibot` all deprecated
+- `resolving required meta flag` from schema no longer supported (Standard Schema limitation)
+- `useField` API unchanged: `errorMessage`, `handleBlur`, `handleChange` still exist
 
 ---
 
@@ -340,4 +356,5 @@ not dead
 | | `vue-i18n` bumped from v9 → v11 (v9 in maintenance) |
 | | `nuxt` / `@nuxt/kit` bumped from v3 → v4 (v3 EOL July 2026) |
 | | `typescript` bumped to v6, `vite` to v8, `vitest` to v4 |
-| | Zod pinned to `^3.x` pending VeeValidate v5 stable release |
+| | **Zod upgraded to v4.4.3** — Standard Schema native, no adapter needed |
+| | **VeeValidate upgraded to v5.0.0-beta.1** — Standard Schema support, `@vee-validate/zod` dropped |

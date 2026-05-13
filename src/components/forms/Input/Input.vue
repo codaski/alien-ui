@@ -2,10 +2,14 @@
 /**
  * AlienInput — single-line text input.
  *
- * Behaviour : native <input> (no Reka UI primitive needed for basic text input)
- * Styling   : cva variants from Input.variants.ts
- * Validation: wires into VeeValidate via `name` prop
- * i18n      : placeholder falls back to t('alien-ui.input.placeholder')
+ * Behaviour  : native <input> (no Reka UI primitive needed for basic text input)
+ * Styling    : cva variants from Input.variants.ts
+ * Validation : VeeValidate v5 + Zod v4 (Standard Schema — no toTypedSchema needed)
+ * i18n       : placeholder falls back to t('alien-ui.input.placeholder')
+ *
+ * Validation wiring:
+ *   Pass `name` prop matching a key in the parent useForm() Zod schema.
+ *   VeeValidate v5 reads the Standard Schema directly — no adapter required.
  */
 
 import { computed, useTemplateRef } from 'vue'
@@ -45,7 +49,7 @@ defineSlots<InputSlots>()
 
 const { t } = useLocale()
 
-// ── IDs for a11y label association ────────────────────────────────────────
+// ── IDs for a11y label association ─────────────────────────────────────────
 
 const inputId = useAlienId('input')
 const hintId  = useAlienId('input-hint')
@@ -54,14 +58,19 @@ const hintId  = useAlienId('input-hint')
 
 const model = defineModel<string>({ default: '' })
 
-// ── VeeValidate integration (optional — only active when `name` is set) ───
+// ── VeeValidate v5 integration (optional — only active when `name` is set) ─
+//
+// VeeValidate v5 + Zod v4: no toTypedSchema() or adapter needed.
+// The parent form calls: useForm({ validationSchema: myZodSchema })
+// This component hooks in via matching `name` prop to a schema key.
+// We do NOT use syncVModel here — defineModel above owns the value binding.
 
 const {
   errorMessage: veeError,
   handleBlur:   veeBlur,
   handleChange: veeChange,
 } = props.name
-  ? useVeeField(props.name, { syncVModel: true })
+  ? useVeeField<string>(props.name)
   : { errorMessage: undefined, handleBlur: undefined, handleChange: undefined }
 
 // ── Resolved state ─────────────────────────────────────────────────────────

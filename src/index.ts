@@ -20,7 +20,8 @@ export { useLocale, useTheme, useVariants } from './composables'
 export type { AlienLocaleContext, AlienThemeContext, TranslateFn } from './composables'
 
 // ── Utils ──────────────────────────────────────────────────────────────────
-export { cn, toAlienSchema, resolveFieldError } from './utils'
+export { cn, resolveFieldError } from './utils'
+export type { InferSchema } from './utils'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 export type {

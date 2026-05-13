@@ -32,11 +32,11 @@ you can eject any component directly into your project and own it completely, ju
 | Component primitives | [Reka UI](https://reka-ui.com) | `^2.x` |
 | Styling | [Tailwind CSS](https://tailwindcss.com) | `^4.x` |
 | Language | TypeScript | `^5.4` |
-| Framework | Vue 3 + Nuxt 3 | Vue `^3.5` / Nuxt `^3.13` |
-| Validation schema | [Zod](https://zod.dev) | `^3.x` |
-| Form state | [VeeValidate](https://vee-validate.logaretm.com/v4/) | `^4.x` |
-| Internationalisation | [vue-i18n](https://vue-i18n.intlify.dev) | `^9.x` |
-| Bundler | [Vite](https://vitejs.dev) + `vite-plugin-vue` | `^5.x` |
+| Framework | Vue 3 + Nuxt 4 | Vue `^3.5` / Nuxt `^4.x` |
+| Validation schema | [Zod](https://zod.dev) | `^4.x` |
+| Form state | [VeeValidate](https://vee-validate.logaretm.com/v5/) | `^5.x` (Standard Schema) |
+| Internationalisation | [vue-i18n](https://vue-i18n.intlify.dev) | `^11.x` |
+| Bundler | [Vite](https://vitejs.dev) + `@tailwindcss/vite` | `^8.x` |
 | Package manager | npm | `^10.x` |
 
 ---
