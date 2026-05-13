@@ -57,6 +57,8 @@
     "new:component": "tsx cli/cli.ts new-component",
     "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build",
     "ci": "npm run lint && npm run typecheck && npm run test && npm run build && npm pack --dry-run",
+    "link:test-app": "node ./scripts/link-test-app.mjs",
+    "link:test-app:quick": "node ./scripts/link-test-app.mjs --no-build",
     "publish:beta": "npm publish --access public --tag beta"
   },
   "peerDependencies": {

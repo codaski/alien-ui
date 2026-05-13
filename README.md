@@ -281,7 +281,7 @@ Peek **`exports`** in **`package.json`** for subpath curiosity.
 
 ## Contributing · thanks 🙏
 
-Hack, star, complain constructively — **[codaski/alien-ui](https://github.com/codaski/alien-ui)** · maintainers skim **[`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md)**.
+Hack, star, complain constructively — **[codaski/alien-ui](https://github.com/codaski/alien-ui)** · maintainers skim **[`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md)** · local Nuxt + `file:` dev loop: **`npm run link:test-app`** (see Contributing).
 
 ---
 
