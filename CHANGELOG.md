@@ -10,7 +10,7 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 ### Changed
 
-- _Nothing yet._
+- **Release workflow:** after publishing a semver **prerelease** to the **`beta`** dist-tag, CI runs **`npm dist-tag add … latest`** so npm’s default **`latest`** matches the newest beta (aligns the registry default with [GitHub](https://github.com/codaski/alien-ui) tags).
 
 ## [0.2.2-beta] - 2026-05-15
 

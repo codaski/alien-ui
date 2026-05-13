@@ -42,7 +42,8 @@ jobs:
 
       - name: Publish to npm
         shell: bash
-        # Prereleases ( hyphen in semver, e.g. 0.2.2-beta ) MUST NOT overwrite npm "latest".
+        # Prereleases use dist-tag `beta`. We also point `latest` at the same tarball so the npm
+        # package page default matches the newest release from GitHub (pre-1.0; still semver prerelease).
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
@@ -52,6 +53,8 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           if [[ "${VERSION}" == *-* ]]; then
             npm publish --access public --tag beta
+            # Keep npm's default "Version" / `npm install pkg` aligned with newest published beta
+            npm dist-tag add "@codaski/alien-ui@${VERSION}" latest
           else
             npm publish --access public
           fi

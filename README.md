@@ -46,6 +46,12 @@ Until then — **thanks for being early.** 👋✨
 
 ## Install
 
+**npm `latest` vs `beta`:** Bare **`npm install @codaski/alien-ui`** follows the **`latest`** [dist-tag](https://docs.npmjs.com/cli/v10/commands/npm-dist-tag). Prerelease builds (`0.x.x-beta`) are published on **`beta`**; CI also moves **`latest`** to that same version so the default on [npmjs.com](https://www.npmjs.com/package/@codaski/alien-ui) tracks the newest tag from [GitHub releases](https://github.com/codaski/alien-ui/releases). Prefer **`@beta`** if you want to pin the channel explicitly:
+
+```bash
+npm install @codaski/alien-ui@beta
+```
+
 Standard:
 
 ```bash
