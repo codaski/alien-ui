@@ -151,6 +151,10 @@ export default defineConfig({ plugins: [tailwindcss(), vue()] })
 
 ---
 
+## Repository
+
+[github.com/codaski/alien-ui](https://github.com/codaski/alien-ui) — private during development, public on first release.
+
 ## License
 
 MIT © Alien UI Contributors
