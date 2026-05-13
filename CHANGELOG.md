@@ -10,6 +10,7 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 ### Changed
 
+- **Node.js `>=22`:** `engines`, [`.nvmrc`](./.nvmrc), and CI read the same version (fixes ESLint 10 / `Object.groupBy` on Node 20). Use `npm run ci` locally — it is what GitHub Actions runs after `npm ci`.
 - Long-form docs (`docs/`, `RULES.md`) removed from revision control via `.gitignore` so clones show source + public readme only; keep those trees locally if you rely on them. Public contributor entry-point is [.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md).
 
 ## [0.1.0] - 2026-05-13

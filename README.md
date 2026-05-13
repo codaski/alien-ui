@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@alien-ui/vue?label=npm&logo=npm&color=CB3837)](https://www.npmjs.com/package/@alien-ui/vue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D20.10-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 
 > A Vue 3 / Nuxt component library — themed, headless-ready, and fully ejectable.  
 > Built on [Reka UI](https://reka-ui.com) · [Tailwind CSS v4](https://tailwindcss.com) · [Zod](https://zod.dev) · [vue-i18n](https://vue-i18n.intlify.dev)
@@ -17,6 +17,7 @@
 - [Status](#status-beta--not-for-production-yet)
 - [What is Alien UI?](#what-is-alien-ui)
 - [Tech stack](#tech-stack)
+- [Developing this library](#developing-this-library)
 - [Installation and usage](#installation-and-usage)
 - [Component categories](#component-categories-planned-vs-present)
 - [i18n](#i18n)
@@ -68,6 +69,7 @@ Only a **small set of components is implemented today** (for example **Input**);
 | Component primitives | [Reka UI](https://reka-ui.com) | `^2.x` |
 | Styling | [Tailwind CSS](https://tailwindcss.com) | `^4.x` |
 | Language | TypeScript | `^6.0` |
+| Runtime | Node.js | `>=22` (`engines` / `.nvmrc`; ESLint 10 toolchain needs modern `Object.groupBy`) |
 | Framework | Vue 3 + Nuxt 4 | Vue `^3.5` / Nuxt `^4.x` |
 | Validation schema | [Zod](https://zod.dev) | `^4.x` |
 | Form state | [VeeValidate](https://vee-validate.logaretm.com/v5/) | `^5.x` beta |
@@ -77,10 +79,24 @@ Only a **small set of components is implemented today** (for example **Input**);
 
 ---
 
+## Developing this library
+
+Same pipeline as **[CI](https://github.com/codaski/alien-ui/actions)** (`lint` → `typecheck` → `test` → `build` → `npm pack --dry-run`):
+
+```bash
+npm ci
+npm run ci
+```
+
+Use **Node 22** ([`.nvmrc`](./.nvmrc), [`package.json`](./package.json) `engines`).
+
+---
+
 ## Installation and usage
 
 ### Prerequisites
 
+- **Node.js `>=22`** (see [`package.json`](./package.json) `engines` and repo **`.nvmrc`**). Needed for development **and** this repo’s ESLint toolchain.
 - **Vue** `>= 3.5` as a peer (`vue` in your app).
 - **Tailwind CSS v4** with **`@tailwindcss/vite`** in your app if you use **`@alien-ui/vue/styles`** (recommended), so tokens and utilities compile correctly.
 

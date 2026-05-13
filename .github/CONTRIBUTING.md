@@ -12,6 +12,8 @@ Nothing stops you opening an issue asking for onboarding help; substantive PRs b
 
 ## Smoke-test `@alien-ui/vue` locally (before npm)
 
+**Prerequisites:** **Node.js 22+** and **npm 10+** (see root `package.json` `engines` and `.nvmrc`).
+
 ```bash
 npm ci
 npm run build
