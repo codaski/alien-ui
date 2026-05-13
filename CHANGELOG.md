@@ -12,6 +12,15 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 - _Nothing yet._
 
+## [0.1.1-beta] - 2026-05-13
+
+Prerelease published to npm under the **`beta`** dist-tag (**`npm install @alien-ui/vue@beta`**).
+
+### Changed
+
+- **README:** consumer-first usage guide and optimistic beta wording.
+- **Release workflow:** versions containing a hyphen (semver prereleases) run **`npm publish --tag beta`** so **`npm install @alien-ui/vue`** (**`latest`**) stays on **`0.1.0`** until you publish a stable version without prerelease identifiers.
+
 ## [0.1.0] - 2026-05-13
 
 First public **beta** (`@alien-ui/vue`).
@@ -30,5 +39,6 @@ First public **beta** (`@alien-ui/vue`).
 - **Vite:** `rolldownOptions` (incl. **`pluginTimings: false`**); tests mount **`createAlienUI()`** to avoid `useLocale()` stderr noise.
 - Maintainer-only **`docs/`** + **`RULES.md`** gitignored; public entry [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
 
-[Unreleased]: https://github.com/codaski/alien-ui/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/codaski/alien-ui/compare/v0.1.1-beta...HEAD
+[0.1.1-beta]: https://github.com/codaski/alien-ui/releases/tag/v0.1.1-beta
 [0.1.0]: https://github.com/codaski/alien-ui/releases/tag/v0.1.0

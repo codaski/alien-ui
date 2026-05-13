@@ -1,136 +1,125 @@
-# `@alien-ui/vue` · Alien UI
+# 👋 `@alien-ui/vue` · Alien UI
 
 [![npm](https://img.shields.io/npm/v/@alien-ui/vue?label=npm&logo=npm&color=CB3837)](https://www.npmjs.com/package/@alien-ui/vue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/typings-ready-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-> A Vue 3 / Nuxt component library — themed, headless-ready, and fully ejectable.  
-> Built on [Reka UI](https://reka-ui.com) · [Tailwind CSS v4](https://tailwindcss.com) · [Zod](https://zod.dev) · [vue-i18n](https://vue-i18n.intlify.dev)
+**Hello!** Thanks for stopping by **Alien UI** — a Vue-friendly kit built on **[Reka UI](https://reka-ui.com)** primitives, **[Tailwind CSS v4](https://tailwindcss.com)** (**`--alien-*`** tokens), **[vue-i18n](https://vue-i18n.intlify.dev)**, and **[Zod](https://zod.dev)** / **[VeeValidate](https://vee-validate.logaretm.com/v5/)** for the direction we’re taking forms. We’re intentionally shipping **early and in the open** so you can try things, give feedback, and grow with the project.
 
-**Quick links:** [Package on npm](https://www.npmjs.com/package/@alien-ui/vue) · [Issues](https://github.com/codaski/alien-ui/issues) · [Source](https://github.com/codaski/alien-ui)
+**Quick links:** [npm](https://www.npmjs.com/package/@alien-ui/vue) · [Issues](https://github.com/codaski/alien-ui/issues) · [Source](https://github.com/codaski/alien-ui) · [Changelog](./CHANGELOG.md)
 
 ---
 
-## Table of contents
+## A warm note on beta — you’re early, and that’s awesome
 
-- [Status](#status-beta--not-for-production-yet)
-- [What is Alien UI?](#what-is-alien-ui)
-- [Tech stack](#tech-stack)
-- [Developing this library](#developing-this-library)
-- [Installation and usage](#installation-and-usage)
-- [Component categories](#component-categories-planned-vs-present)
-- [i18n](#i18n)
-- [Overriding the theme](#overriding-the-theme)
-- [Contributor documentation](#contributor-documentation)
-- [Changelog](./CHANGELOG.md)
-- [Repository](#repository)
-- [License](#license)
+We’re **polishing in public**: the API is still finding its final shape, bundled components will grow, and **`0.x`** means we may ship **breaking tweaks** as we learn. That’s not a glitch in our plan — it’s part of baking a library that feels great to use long-term.
 
-## Status: beta — not for production yet
+**What we’d love you to use this for**
 
-**This package is unfinished and under active development.** Treat every release as **experimental**.
+- Sandbox apps · internal demos · spikes · learning beside us · sharing ideas in issues
 
-| | |
+**Where we politely ask you to wait**
+
+- Customer-facing launches that can’t handle breaking changes · hardened long-term SLAs unless you consciously own the fork
+
+Think of today’s releases as **“solid codepaths for exploratory timelines.”** Alien UI installs and runs, but **`0.*`** isn’t the moment to hinge a multinational release on undocumented behaviour. Pin versions, read **[CHANGELOG.md](./CHANGELOG.md)** on bumps, and when we trumpet **v1 / stable**, you’ll hear us.
+
+Until then — **thanks for being early.** 👋✨
+
+---
+
+## What your app needs
+
+| Requirement | Details |
 |---|---|
-| **Use it for** | Spikes, playgrounds, local testing, early feedback, design experiments. |
-| **Do not use it for** | Production applications, customer-facing launches, or long-lived codebases you cannot afford to rewrite. |
-| **Expect** | Breaking API changes, renamed exports, changed Nuxt module behaviour, incomplete components, and semver `0.x` instability until a stable **v1** is announced. |
-| **Versioning** | Releases follow **SemVer** (`0.y.z` allows breaking changes); still **pin an exact version** (`"0.1.0"`) when experimenting so updates are deliberate. |
+| **Vue** | **`>= 3.5`** — **`peerDependency`**. Install **`vue`** in your app. |
+| **Bundler** | **Vite** or **Nuxt 4** (examples below align with typical setups). |
+| **Styles** | When you **`import '@alien-ui/vue/styles'`**, add **Tailwind CSS v4** and **`@tailwindcss/vite`** in **your** app so utilities and theme layers compile. |
+| **TypeScript** | **Optional** — typings ship with the tarball. |
+| **Exact semver** | **`package.json`** on npm is the authoritative list (`dependencies`, `peerDependencies`). |
 
-Until maintainers publish a clear **“stable”** or **v1** milestone, you assume all risk. There is **no** guarantee of backward compatibility or support SLAs.
+**What’s in the box today:** **`AlienInput`** leads the parade; more pieces follow on the roadmap below.
 
----
-
-## What is Alien UI?
-
-Alien UI is an **open-architecture UI kit** aimed at Vue 3 and Nuxt 4.
-
-Only a **small set of components is implemented today** (for example **Input**); others are planned. When more ship, the goals stay the same:
-
-### Design philosophy
-
-| Principle | What it means in practice |
-|---|---|
-| **Headless-first** | Behaviour leans on Reka UI primitives; styling is a separate layer. |
-| **Themed by default** | Defaults use Tailwind CSS variables (`--alien-*`). |
-| **Override anything** | Components can be **ejected** into your repo so you own the source. |
-| **Type-safe API** | Props, emits, slots, and composables are typed in TypeScript. |
-| **i18n-friendly** | vue-i18n integration for library strings. |
-| **SSR-minded** | Designed to work with Nuxt (guards on browser-only APIs). |
-| **Forms** | Intended direction: Zod + VeeValidate wiring on form controls (VeeValidate v5 is still beta upstream — evaluate before any production use). |
+**Heads-up:** **VeeValidate v5** is still **beta upstream** · evaluate if you rely on it for risky flows.
 
 ---
 
-## Tech stack
+## Install
 
-| Layer | Technology | Version target |
-|---|---|---|
-| Component primitives | [Reka UI](https://reka-ui.com) | `^2.x` |
-| Styling | [Tailwind CSS](https://tailwindcss.com) | `^4.x` |
-| Language | TypeScript | `^6.0` |
-| Runtime | Node.js | `>=22` (`engines` / `.nvmrc`; ESLint 10 toolchain needs modern `Object.groupBy`) |
-| Framework | Vue 3 + Nuxt 4 | Vue `^3.5` / Nuxt `^4.x` |
-| Validation schema | [Zod](https://zod.dev) | `^4.x` |
-| Form state | [VeeValidate](https://vee-validate.logaretm.com/v5/) | `^5.x` beta |
-| Internationalisation | [vue-i18n](https://vue-i18n.intlify.dev) | `^11.x` |
-| Bundler | [Vite](https://vitejs.dev) + `@tailwindcss/vite` | `^8.x` |
-| Package manager | npm | `>=10` (see [`package.json`](./package.json) **`engines`**; reproducible installs use `npm ci`) |
-
-Use **`package.json`** for exact semver ranges and lockfile-pinned resolves.
-
-## Developing this library
-
-Same pipeline as **[CI](https://github.com/codaski/alien-ui/actions)** (`lint` → `typecheck` → `test` → `build` → `npm pack --dry-run`):
-
-```bash
-npm ci
-npm run ci
-```
-
-Use **Node 22** ([`.nvmrc`](./.nvmrc), [`package.json`](./package.json) `engines`).
-
----
-
-## Installation and usage
-
-### Prerequisites
-
-- **Node.js `>=22`** (see [`package.json`](./package.json) `engines` and repo **`.nvmrc`**). Needed for development **and** this repo’s ESLint toolchain.
-- **Vue** `>= 3.5` as a peer (`vue` in your app).
-- **Tailwind CSS v4** with **`@tailwindcss/vite`** in your app if you use **`@alien-ui/vue/styles`** (recommended), so tokens and utilities compile correctly.
-
-### Install
+Standard:
 
 ```bash
 npm install @alien-ui/vue
+```
 
-# Recommended during beta: pin an explicit version SemVer range or exact version
+Comfortable pinning while **`0.*`** evolves (stable **`latest`** channel):
+
+```bash
 npm install '@alien-ui/vue@~0.1.0'
 ```
 
-Pre-release publishes may use npm’s **`beta`** [dist-tag](https://docs.npmjs.com/cli/v10/commands/npm-dist-tag): then install with `npm install @alien-ui/vue@beta` (maintainers can run `npm run publish:beta` from this repo).
+**Prereleases** (semver build with a hyphen, e.g. **`0.1.1-beta`**): use the **`beta`** tag or an exact version:
+
+```bash
+npm install @alien-ui/vue@beta
+npm install '@alien-ui/vue@0.1.1-beta'
+```
+
+From **`npm pack` tarball**:
+
+```bash
+npm install /absolute/path/to/alien-ui-vue-0.1.1-beta.tgz
+```
+
+Local **`file:`** path (monorepos / workspaces):
+
+```json
+{
+  "dependencies": {
+    "@alien-ui/vue": "file:../path/to/package-root"
+  }
+}
+```
+
+See above for **`npm install @alien-ui/vue@beta`** · exact **`0.1.1-beta`**, and tarball names.
 
 ---
 
-### Option A — Vue 3 + Vite (manual imports)
+## Vue 3 + Vite
 
-Register the plugin once, import styles once, then **import each component** you need (there is no built-in auto-import unless you add something like `unplugin-vue-components` yourself).
+1. Add **Vue** `>= 3.5`, **tailwindcss**, **`@tailwindcss/vite`**.  
+2. Configure **`vite.config.ts`** (below).  
+3. **`createAlienUI()` + styles** once before mount (below).  
+4. **`import`** components where you want them *(or plug in **`unplugin-vue-components`** for auto-discovery — your choice).*
+
+### `vite.config.ts`
 
 ```ts
-// main.ts
+import tailwindcss from '@tailwindcss/vite'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [tailwindcss(), vue()],
+})
+```
+
+### `main.ts`
+
+```ts
 import { createApp } from 'vue'
 import { createAlienUI } from '@alien-ui/vue'
 import '@alien-ui/vue/styles'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(createAlienUI(/* optional: { locale, messages, … } */))
+app.use(createAlienUI(/* optional: { locale, messages } */))
 app.mount('#app')
 ```
 
+### `.vue`
+
 ```vue
-<!-- Any .vue file -->
 <script setup lang="ts">
 import { AlienInput } from '@alien-ui/vue'
 
@@ -142,45 +131,50 @@ const value = ref('')
 </template>
 ```
 
-**Deep imports** (subject to the package `exports` map), for example:
+**Optional exports-respecting import:**
 
 ```ts
 import { AlienInput } from '@alien-ui/vue/components/forms'
 ```
 
-Use these only if your bundler resolves them; prefer the main entry during beta while APIs settle.
-
 ---
 
-### Option B — Nuxt 4 (module: styles + plugin + selective auto-import)
+## Nuxt 4
+
+The module wires **CSS**, **`createAlienUI()`**, **composables auto-import**, and registered components (**`AlienInput` → `<AlienInput />`**).
+
+### `nuxt.config.ts`
 
 ```ts
-// nuxt.config.ts
 export default defineNuxtConfig({
   modules: ['@alien-ui/vue/nuxt'],
   alienUI: {
     // locale: 'en',
     // colorMode: 'system' | 'light' | 'dark',
-    // prefix: 'Alien',           // default → <AlienInput />
-    // ejectDir: '~/components/alien', // optional: local components override package
+    // prefix: 'Alien',
+    // ejectDir: '~/components/alien',
   },
   vite: {
-    resolve: {
-      dedupe: ['vue'], // helpful when npm-linking or monorepo duplicates
-    },
+    resolve: { dedupe: ['vue'] },
   },
 })
 ```
 
-What the **Nuxt module** currently does in broad strokes:
+**`dedupe: ['vue']`** helps cure duplicate-Vue quirks when **`file:`** linking or similar.
 
-- Injects **`@alien-ui/vue/styles`** into Nuxt’s CSS pipeline (no manual `@import` needed for the default path).
-- Registers a **Nuxt plugin** that calls **`createAlienUI()`** using **`runtimeConfig.public.alienUI`** for options.
-- **Auto-imports composables** from the published package (for example `useLocale`, `useTheme`, `useVariants`) when resolution finds them in the built output.
-- **Registers implemented components** by name (today includes **`AlienInput`** with default prefix **`Alien`**).
-- If **`ejectDir`** is set, that directory is scanned **first** so **ejected** `.vue` files override the package.
+### Templates
 
-You can still **import manually** in Nuxt if you prefer:
+```vue
+<script setup lang="ts">
+const email = ref('')
+</script>
+
+<template>
+  <AlienInput v-model="email" label="Email" />
+</template>
+```
+
+Explicit imports still welcomed:
 
 ```vue
 <script setup lang="ts">
@@ -190,41 +184,7 @@ import { AlienInput } from '@alien-ui/vue'
 
 ---
 
-### Option C — Try locally before npm (file / tarball)
-
-See **[`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md)** for `npm pack`, `file:` dependencies, Nuxt playground setup, and `dedupe`. Same beta warnings apply.
-
----
-
-### CLI — eject a component (experimental)
-
-After installing the package:
-
-```bash
-npx alien-ui eject Input
-```
-
-Copies source from the package into your project (exact target path is printed by the CLI). In Nuxt, align **`alienUI.ejectDir`** with where you place overrides.
-
----
-
-## Component categories (planned vs present)
-
-Only **forms / Input** is realistically usable today; others are **roadmap**.
-
-```
-alien-ui/
-├── forms/          # Input … (more planned)
-├── blocks/         # Card, Modal, … (planned)
-├── layout/         # … (planned)
-└── feedback/       # … (planned)
-```
-
----
-
-## i18n
-
-English messages ship by default. Example override:
+## Locale / i18n (English by default)
 
 ```ts
 import { createAlienUI } from '@alien-ui/vue'
@@ -236,14 +196,13 @@ app.use(createAlienUI({
 }))
 ```
 
+Nested keys commonly use the **`alien-ui.*`** prefix — merge your own catalogs as needed.
+
 ---
 
-## Overriding the theme
-
-Tokens are **`--alien-*`** CSS variables after you import the library styles:
+## Theming (`--alien-*`)
 
 ```css
-/* assets/main.css (Vue) — Nuxt loads @alien-ui/vue/styles via the module */
 @import "@alien-ui/vue/styles";
 
 :root {
@@ -252,48 +211,40 @@ Tokens are **`--alien-*`** CSS variables after you import the library styles:
 }
 ```
 
-Vite apps need the Tailwind v4 plugin:
+*(Nuxt: module usually injects the stylesheet — you mainly override `:root` in your CSS.)*
 
-```ts
-import tailwindcss from '@tailwindcss/vite'
-import vue from '@vitejs/plugin-vue'
+---
 
-export default defineConfig({
-  plugins: [tailwindcss(), vue()],
-})
+## CLI · `npx alien-ui eject`
+
+```bash
+npx alien-ui eject Input
 ```
 
----
-
-## Contributor documentation
-
-**Public repo reality:** Anything **committed** to GitHub can be cloned in full — there are no permissioned folders inside one public repo.
-
-This project keeps detailed internal material **off Git** by ignoring it (see `.gitignore`):
-
-| Path | Stays |
-|---|---|
-| **`docs/`** | On maintainer disks only (architecture, REFERENCES, full contributing playbook). |
-| **`RULES.md`** | On maintainer disks only (coding norms & release notes). |
-
-**Public surface for contributors:**
-
-- **[`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md)** — how to engage, fork, smoke-test locally, and visibility notes.
-
-**Consumers** — use **`README.md`**, **`CHANGELOG.md`**, and the **[npm readme](https://www.npmjs.com/package/@alien-ui/vue)**; the tarball is mostly `dist/` + `src/` per `package.json` `files`.
-
-> **Historical commits:** Paths removed from Git still exist in older commits unless you rewrite history (`git filter-repo` / [BFG](https://rtyley.github.io/bfg-repo-cleaner/) before going public).
+Point **`alienUI.ejectDir`** at wherever you parked the copy so Nuxt prioritises yours.
 
 ---
 
-## Repository
+## Roadmap teaser
 
-[**github.com/codaski/alien-ui**](https://github.com/codaski/alien-ui) — forks and issues welcome.
+✅ **`AlienInput`** now · 🛠️ more primitives on deck — milestones land with **[CHANGELOG](./CHANGELOG.md)** entries, not stealth breaks.
 
-**Switching visibility to Public (GitHub):** *Settings → General → Danger zone → Change visibility → Public.*
+Peek **`exports`** in **`package.json`** for subpath curiosity.
+
+---
+
+## Stack snapshot
+
+**Reka UI 2 · Tailwind 4 · Vue 3.5+ · vue-i18n 11 · Zod 4 · VeeValidate 5 (beta lineage)** · copy-paste semver from **`package.json`**.
+
+---
+
+## Contributing · thanks 🙏
+
+Hack, star, complain constructively — **[codaski/alien-ui](https://github.com/codaski/alien-ui)** · maintainers skim **[`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md)**.
 
 ---
 
 ## License
 
-MIT © Alien UI Contributors — see [`LICENSE`](./LICENSE).
+MIT © Alien UI Contributors — see [LICENSE](./LICENSE).
