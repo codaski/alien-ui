@@ -34,6 +34,8 @@ From this repo, after you have a consumer app on disk (your paths may differ):
    npm run link:test-app
    ```
 
+   Do **not** run this in the same terminal while **`npm login` / `npm dist-tag` / anything waiting for Enter** is active — mixed input produces broken output and failed commands. Use a **second terminal** for `link:test-app`.
+
    That runs **`npm run build`** here, then **`npm install <this-repo>`** in the consumer so `node_modules/@codaski/alien-ui` tracks **`dist/`** (and runs the consumer’s install lifecycle). Override the consumer directory with the first CLI argument or **`ALIEN_UI_TEST_APP`**. If the default layout matches yours (`../../local-testing/alien-ui-nuxt` relative to this repo), you can omit both.
 
 3. **`npm run link:test-app:quick`** skips the library build (use when you already ran `build` and only need to refresh the link).

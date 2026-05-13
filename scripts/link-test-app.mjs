@@ -19,12 +19,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const libRoot = resolve(__dirname, '..')
 
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm'
-const runNpm = (cwd, args) =>
+
+/** Run npm with optional shell (Windows build step only). */
+const runNpm = (cwd, args, opts = {}) =>
   spawnSync(npmCmd, args, {
     cwd,
     stdio: 'inherit',
-    // Avoid cmd word-splitting on paths that contain spaces (e.g. ".../Alien UI")
-    shell: false,
+    // Install must use shell:false + file:// so paths with spaces work. Build is more reliable on some Windows setups with shell:true.
+    shell: opts.shell ?? false,
   })
 
 let noBuild = false
@@ -49,9 +51,15 @@ if (!existsSync(join(testApp, 'package.json'))) {
 
 if (!noBuild) {
   console.log('[link-test-app] npm run build (library)…')
-  const b = runNpm(libRoot, ['run', 'build'])
-  if (b.status !== 0)
+  // Windows: shell helps npm.cmd resolve consistently; cwd is set separately (spaces in repo path are OK)
+  const b = runNpm(libRoot, ['run', 'build'], { shell: process.platform === 'win32' })
+  if (b.status !== 0 || b.signal) {
+    console.error(`[link-test-app] "npm run build" failed (exit=${b.status ?? '?'}, signal=${b.signal ?? 'none'})`)
+    if (b.error)
+      console.error(b.error)
+    console.error('[link-test-app] Run `npm run build` in this repo for full logs.')
     process.exit(b.status ?? 1)
+  }
 }
 
 console.log('[link-test-app] npm install from library into consumer…')
