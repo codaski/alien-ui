@@ -10,21 +10,25 @@ breaking API or export changes remain possible despite patch/minor bumps.
 
 ### Changed
 
-- **Tests:** Register **`createAlienUI()`** on VTU **`global.plugins`** in **`Input`** specs so `useLocale()` has a provider (no stray stderr during **`npm run ci`**).
-- **Build (Vite → Rolldown):** **`build.rolldownOptions.checks.pluginTimings: false`** — `unplugin-dts` legitimately dominates a slice of build time; the timing warning is noise in CI.
-- **Build / `unplugin-dts`:** Add **`@vue/language-core`** as a devDependency (aligned with **`vue-tsc`**) so declarations build resolves the module under `npm ci`.
-- **npm `ci` / lockfile:** Direct devDependencies **`cac`** and **`commander`** plus **`overrides`** for Vite peer plugins under Nuxt DevTools keep `package-lock.json` complete and suppress spurious peer warnings with Vite **8**.
-- **Node.js `>=22`:** `engines`, [`.nvmrc`](./.nvmrc), and CI read the same version (fixes ESLint 10 / `Object.groupBy` on Node 20). Use `npm run ci` locally — it is what GitHub Actions runs after `npm ci`.
-- Long-form docs (`docs/`, `RULES.md`) removed from revision control via `.gitignore` so clones show source + public readme only; keep those trees locally if you rely on them. Public contributor entry-point is [.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md).
+- _Nothing yet._
 
 ## [0.1.0] - 2026-05-13
 
+First public **beta** (`@alien-ui/vue`).
+
 ### Added
 
-- Scoped package `@alien-ui/vue`: Vue plugin (`createAlienUI`), Tailwind v4 stylesheet export, variants entry.
-- Nuxt module entry `@alien-ui/vue/nuxt` with runtime plugin, style injection, composable auto-imports, and registered `AlienInput`.
-- Implemented `AlienInput` plus CLI (`alien-ui` bin) for eject/scaffold workflows.
-- MIT license, CI (lint/typecheck/test/build), npm release workflow on `v*` tags.
+- Scoped package **`@alien-ui/vue`**: Vue plugin (`createAlienUI`), Tailwind v4 stylesheet export, variants entry.
+- Nuxt module **`@alien-ui/vue/nuxt`**: runtime plugin, style injection, composable auto-imports, registered **`AlienInput`**.
+- **`AlienInput`** component and **`alien-ui`** CLI (eject/scaffold).
+- MIT license, CI (`npm run ci`), release workflow on **`v*`** tags.
+
+### Changed
+
+- **Node.js `>=22`** (`.nvmrc`, `engines`, CI) for ESLint 10 / modern JS.
+- **npm `ci`:** lockfile hygiene (`cac`, `commander`), Vite peer **`overrides`** for Nuxt DevTools; **`@vue/language-core`** pinned for `unplugin-dts`.
+- **Vite:** `rolldownOptions` (incl. **`pluginTimings: false`**); tests mount **`createAlienUI()`** to avoid `useLocale()` stderr noise.
+- Maintainer-only **`docs/`** + **`RULES.md`** gitignored; public entry [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
 
 [Unreleased]: https://github.com/codaski/alien-ui/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/codaski/alien-ui/releases/tag/v0.1.0
